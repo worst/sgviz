@@ -20,7 +20,7 @@ boolean mouseRepulse=false;
 boolean renderBalls=true; 
  
 int vel=15; 
-int mode=RANDOM; 
+int mode=POLYNET; 
 ArrayList ns; 
 ArrayList as; 
 float k,k2; 
@@ -31,35 +31,37 @@ float curMass;
 static final int RANDOM=0; 
 static final int POLYNET=1; 
 int im; 
-void keyPressed(){ 
-  if (key=='a'){ 
-    nn++; 
-    return; 
-  } 
-  else if (key=='t'){ 
-    renderTrail=!renderTrail; 
-    return; 
-  } 
-  else if (key=='b'){ 
-    renderBalls=!renderBalls; 
-    return; 
-  }
-   // else if (key=='r'){ 
-   //   renderArcs=!renderArcs; 
-   //   return; 
-   // } 
-  if (mode==RANDOM) 
-    mode=POLYNET; 
-  else 
-    mode=RANDOM; 
-  prepare();
- /* if (key == 'q') {
-    // Finish the movie if space bar is pressed
-    mm.finish();
-    // Quit running the sketch once the file is written
-    exit();
-  }*/  
-} 
+
+// NO FANCY MODES PLZ.
+// void keyPressed(){ 
+//   if (key=='a'){ 
+//     nn++; 
+//     return; 
+//   } 
+//   else if (key=='t'){ 
+//     renderTrail=!renderTrail; 
+//     return; 
+//   } 
+//   else if (key=='b'){ 
+//     renderBalls=!renderBalls; 
+//     return; 
+//   }
+//    // else if (key=='r'){ 
+//    //   renderArcs=!renderArcs; 
+//    //   return; 
+//    // } 
+//   if (mode==RANDOM) 
+//     mode=POLYNET; 
+//   else 
+//     mode=RANDOM; 
+//   prepare();
+//  /* if (key == 'q') {
+//     // Finish the movie if space bar is pressed
+//     mm.finish();
+//     // Quit running the sketch once the file is written
+//     exit();
+//   }*/  
+// } 
  
 void setup(){ 
   size(400,400,JAVA2D);   
