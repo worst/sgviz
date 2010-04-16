@@ -16,7 +16,7 @@ float mouseMass=30;
 boolean renderTrail=true; 
 boolean renderArcs=true; 
 boolean mouseAttract=false; 
-boolean mouseRepulse=true; 
+boolean mouseRepulse=false; 
 boolean renderBalls=true; 
  
 int vel=15; 
@@ -75,12 +75,13 @@ void setup(){
   psystems = new ArrayList();  
 } 
  
-void mousePressed(){ 
-  curMass=0; 
-  tMass=0; 
-  redraw();
-   psystems.add(new ParticleSystem(int(random(5,25)),new Vector3D(mouseX,mouseY))); 
-} 
+// void mousePressed(){ 
+//   curMass=0; 
+//   tMass=0; 
+//   redraw();
+//    psystems.add(new ParticleSystem(int(random(5,25)),new Vector3D(mouseX,mouseY))); 
+// } 
+
 void prepare(){ 
   ns.clear(); 
   as.clear(); 
@@ -88,13 +89,13 @@ void prepare(){
   case RANDOM: 
     nn=150; 
     k=sqrt(min(width,height)/nn)*.05; 
-    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),4, ns.size+1)); 
+    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),4, ns.size()+1)); 
     break; 
   case POLYNET: 
     nn=4; 
     k=sqrt(width*height/nn)*.5; 
     k2=k*.2; 
-    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),10, ns.size+1)); 
+    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),10, ns.size()+1)); 
     break; 
   }   
   curn=0; 
@@ -126,7 +127,7 @@ void draw(){
     Node newn=null; 
     switch(mode){ 
     case RANDOM: 
-      newn=new Node(nr.pos.x+random(nr.mass,nr.mass+10),nr.pos.y+random(nr.mass,nr.mass+10),4, ns.size+1); 
+      newn=new Node(nr.pos.x+random(nr.mass,nr.mass+10),nr.pos.y+random(nr.mass,nr.mass+10),4, ns.size()+1); 
       ns.add(newn); 
       as.add(new Arc(newn,nr)); 
       newn.incrMass(2); 
@@ -139,7 +140,7 @@ void draw(){
       break; 
     case POLYNET: 
       float prob=random(1); 
-      newn=new Node(random(width),random(height),10, ns.size + 1);           
+      newn=new Node(random(width),random(height),10, ns.size() + 1);           
       ns.add(newn); 
       for(Iterator it2=ns.iterator();it2.hasNext();){ 
         Node m=(Node)it2.next();           
