@@ -14,7 +14,7 @@
 float mouseMass=30; 
  
 boolean renderTrail=true; 
-boolean renderArcs=false; 
+boolean renderArcs=true; 
 boolean mouseAttract=false; 
 boolean mouseRepulse=true; 
 boolean renderBalls=true; 
@@ -44,10 +44,10 @@ void keyPressed(){
     renderBalls=!renderBalls; 
     return; 
   }
-   else if (key=='r'){ 
-    renderArcs=!renderArcs; 
-    return; 
-  } 
+   // else if (key=='r'){ 
+   //   renderArcs=!renderArcs; 
+   //   return; 
+   // } 
   if (mode==RANDOM) 
     mode=POLYNET; 
   else 
