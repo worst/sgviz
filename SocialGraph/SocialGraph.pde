@@ -26,7 +26,7 @@ boolean renderBalls=true;
 
  
 int vel=15; 
-int mode=POLYNET; 
+int mode=FREE; 
 ArrayList ns; 
 ArrayList as; 
 float k,k2; 
@@ -35,7 +35,8 @@ float tMass;
 int curn,nn; 
 float curMass; 
 static final int RANDOM=0; 
-static final int POLYNET=1; 
+static final int POLYNET=1;
+static final int FREE = 2; 
 int im;
 
 // so used to _ instead of camel case :(
@@ -135,7 +136,7 @@ void addNode(float width, float height, float mass, String id) {
  
 }
 
-void addEdge(String from_id, String to_id) {
+void addEdge(String from_id, String to_id, String tag) {
 
   if (from_id.equals(to_id))
     return;
@@ -162,7 +163,9 @@ void addEdge(String from_id, String to_id) {
     println("ERROR: Could not frim to node");
   }
   
-  as.add(new Arc(from, to));
+  as.add(new Arc(from, to, tag));
+  
+  println("Number of edges is now: " + as.size());
   
   /*for(Iterator it2=ns.iterator();it2.hasNext();){ 
      Node m=(Node)it2.next();           
@@ -170,9 +173,46 @@ void addEdge(String from_id, String to_id) {
      as.add(new Arc(newn,m));*/
 }
 
+/*void linkAllNodes() {
+  for(Iterator it2=ns.iterator();it2.hasNext();){ 
+     Node m=(Node)it2.next();           
+     if (newn==m) continue; 
+     as.add(new Arc(newn,m));
+   }
+}*/
+
+Node findNode(String id) {
+  for(Iterator it = ns.iterator(); it.hasNext();) {
+    Node n = (Node)it.next();
+    
+    if (n.id.equals(id))
+      return n;
+  }
+  
+  return null;
+}
+
+void findEdge(Node from, Node to, String tag) {
+  printlin("Searching for edge {u, v, t}: " + from + ", " + to + ", " + tag);
+  for (Iterator it = as.iterator(); it.hasNext();) {
+    Edge e = (Edge)it.next();
+    if (e.v.equals(from) && e.u.equals(to) && e.tag.equals(tag)) {
+      println("Found the edge we were looking for!")
+      return e;
+    }
+  }
+  
+  return null;
+}
+
+void updateEdge(String from_id, String to_id, String tag, String weight) {
+  Node from = findNode(from_id);
+  Node to = findNode(to_id);
+  
+}
  
 void draw(){ 
-  if ((t++%vel)==0 && curn<nn){  
+  if (ns.size() > 0  && (t++%vel)==0 && curn<nn){  
     curn++; 
     int r=(int)(random(1,ns.size()-1))-1; 
     int s=0; 
@@ -202,6 +242,7 @@ void draw(){
     //    break; 
     case POLYNET: 
       addNode(width, height, 10, "" + (ns.size() + 1));
+      //linkAllNodes();
 //      float prob=random(1); 
 //                newn=new Node(random(width),random(height),10, ns.size() + 1);           
 //                ns.add(newn); 
@@ -324,10 +365,12 @@ void draw(){
             }*/
 
       String r_addNode = "add_node ([a-zA-Z0-9_-]+)";
-      String r_addEdge = "add_edge ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+)";
+      String r_addEdge = "add_edge ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+)";
+      String r_updateEdge = "update_edge ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
       
       Pattern p_addNode = Pattern.compile(r_addNode);
       Pattern p_addEdge = Pattern.compile(r_addEdge);
+      Pattern p_updateEdge = Pattern.compile(r_updateEdge);
       
       // regexes in java are pretty crappy... or i'm doing something wrong
       if (Pattern.matches(r_addNode, msg)) {
@@ -342,7 +385,6 @@ void draw(){
         
         addNode(width, height, 10, node_id);
       }
-      
       else if (Pattern.matches(r_addEdge, msg)) {
         
         println("New edge requested: [" + msg + "]");
@@ -352,11 +394,31 @@ void draw(){
         m.find();
         String from_id = m.group(1);
         String to_id = m.group(2);
+        String tag = m.group(3);
         
         println("from_id = " + from_id);
         println("to_id = " + to_id);
+        println("tag = " + tag);
         
-        addEdge(from_id, to_id);
+        addEdge(from_id, to_id, tag);
+      }
+      else if (Pattern.matches(r_updateEdge, msg)) {
+        
+        println("Edge update requested: [" + msg + "]");
+        
+        Matcher m = p_updateEdge.matcher(msg);
+        
+        m.find();
+        String from_id = m.group(1);
+        String to_id = m.group(2);
+        String tag = m.group(3);
+        float weight = Float.parseFloat(m.group(4));
+        
+        println("from_id = " + from_id);
+        println("to_id = " + to_id);
+        println("tag = " + tag);
+        println("weight = " + weight);
+        
       }
     }
   }
