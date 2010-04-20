@@ -195,7 +195,7 @@ Node findNode(String id) {
 void findEdge(Node from, Node to, String tag) {
   printlin("Searching for edge {u, v, t}: " + from + ", " + to + ", " + tag);
   for (Iterator it = as.iterator(); it.hasNext();) {
-    Edge e = (Edge)it.next();
+    Arc e = (Arc)it.next();
     if (e.v.equals(from) && e.u.equals(to) && e.tag.equals(tag)) {
       println("Found the edge we were looking for!")
       return e;
@@ -418,6 +418,8 @@ void draw(){
         println("to_id = " + to_id);
         println("tag = " + tag);
         println("weight = " + weight);
+        
+        Arc e = findEdge(from_id, to_id, tag);
         
       }
     }
