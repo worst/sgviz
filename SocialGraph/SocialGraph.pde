@@ -100,13 +100,13 @@ void prepare(){
   case RANDOM: 
     nn=150; 
     k=sqrt(min(width,height)/nn)*.05; 
-    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),4, ns.size()+1)); 
+    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),4, "" + (ns.size()+1))); 
     break; 
   case POLYNET: 
     nn = 5; 
     k=sqrt(width*height/nn)*.5; 
     k2=k*.2;
-    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),10, ns.size()+1)); 
+    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),10, "node: " + (ns.size()+1))); 
     break; 
   }   
   curn=0; 
@@ -124,7 +124,7 @@ void addNode(float width, float height, float mass, String id) {
 
  float prob=random(1); 
  Node newn=null; 
- newn=new Node(random(width),random(height),10, ns.size() + 1);           
+ newn=new Node(random(width),random(height),10, id);           
  ns.add(newn); 
  for(Iterator it2=ns.iterator();it2.hasNext();){ 
    Node m=(Node)it2.next();           
@@ -166,7 +166,7 @@ void draw(){
     //    }   
     //    break; 
     case POLYNET: 
-      addNode(width, height, 10, "hi");
+      addNode(width, height, 10, "node: " + (ns.size() + 1));
 //      float prob=random(1); 
 //                newn=new Node(random(width),random(height),10, ns.size() + 1);           
 //                ns.add(newn); 

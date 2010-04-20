@@ -7,9 +7,9 @@ class Node{
   color mycolor; 
   boolean trail; 
   boolean ball;
-  int node_id = 0;
+  String node_id = null;
   
-  Node(float _x, float _y,float _mass, int _node_id){ 
+  Node(float _x, float _y,float _mass, String _node_id){ 
     //println("_node_id = " + _node_id);
     pos=new Vector2D(_x,_y); 
     disp=new Vector2D(); 
@@ -60,8 +60,8 @@ class Node{
       fill(mycolor);
       ellipse(pos.x,pos.y,mass,mass);
       fill(0);
-//      println("node_id = " + node_id);
-      text(node_id + "", pos.x - mass*1.5/2.0, pos.y /*- mass/10.0*/ /*, mass*1.5, mass*1.5*/);    
+      println("node_id = " + node_id);
+      text(node_id, pos.x - mass*1.5/2.0, pos.y /*- mass/10.0*/ /*, mass*1.5, mass*1.5*/);    
     } 
   } 
   void costrain(float x0, float x1,float y0, float y1){ 
