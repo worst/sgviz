@@ -1,7 +1,7 @@
 /*there is a movie export and image function built in that has been commented out
  *you can restore the movie export option by searching for "mm" in the main tab and uncommenting those lines and importing processing.video.*
  *you can restore the image export by uncommenting the saveFrame line (near the end)
- *the VAST MAJORITY of this code, including the algorithm for rendering the networks is taken from Lorenzo Marchi's Force Directed Placement
+ *the VAST MAsJORITY of this code, including the algorithm for rendering the networks is taken from Lorenzo Marchi's Force Directed Placement
  *http://www.openprocessing.org/visuals/?visualID=177
  *licensed under creative commons and taken from OpenProcessing.org
  *the "shower" tab is from Multiple Particle Systems by  Daniel Shiffman
@@ -18,6 +18,7 @@ boolean renderArcs=true;
 boolean mouseAttract=false; 
 boolean mouseRepulse=false; 
 boolean renderBalls=true; 
+
  
 int vel=15; 
 int mode=POLYNET; 
@@ -94,9 +95,9 @@ void prepare(){
     ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),4, ns.size()+1)); 
     break; 
   case POLYNET: 
-    nn=4; 
+    nn=7; 
     k=sqrt(width*height/nn)*.5; 
-    k2=k*.2; 
+    k2=k*.2;
     ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),10, ns.size()+1)); 
     break; 
   }   
@@ -109,7 +110,20 @@ float fa(float m1, float m2, float z){
 float fr(float m1, float m2, float z){ 
   return .5*pow(m1+m2+k,2)/pow(z,2);     
   //return 20*(m1*m2)/pow(z,2); 
-} 
+}
+
+void addNode(float width, float height, float mass, String id) {
+ float prob=random(1); 
+ Node newn=null; 
+ newn=new Node(random(width),random(height),10, ns.size() + 1);           
+ ns.add(newn); 
+ for(Iterator it2=ns.iterator();it2.hasNext();){ 
+   Node m=(Node)it2.next();           
+   if (newn==m) continue; 
+   as.add(new Arc(newn,m)); 
+ }
+ 
+}
  
 void draw(){ 
   if ((t++%vel)==0 && curn<nn){  
@@ -128,28 +142,29 @@ void draw(){
     Node ss=(Node)ns.get(s); 
     Node newn=null; 
     switch(mode){ 
-    case RANDOM: 
-      newn=new Node(nr.pos.x+random(nr.mass,nr.mass+10),nr.pos.y+random(nr.mass,nr.mass+10),4, ns.size()+1); 
-      ns.add(newn); 
-      as.add(new Arc(newn,nr)); 
-      newn.incrMass(2); 
-      nr.incrMass(2); 
-      if (ns.size()>5 && gen){ 
-        as.add(new Arc(newn,ss)); 
-        newn.incrMass(2); 
-        ss.incrMass(2); 
-      }   
-      break; 
+    // case RANDOM: 
+    //    newn=new Node(nr.pos.x+random(nr.mass,nr.mass+10),nr.pos.y+random(nr.mass,nr.mass+10),4, ns.size()+1); 
+    //    ns.add(newn); 
+    //    as.add(new Arc(newn,nr)); 
+    //    newn.incrMass(2); 
+    //    nr.incrMass(2); 
+    //    if (ns.size()>5 && gen){ 
+    //      as.add(new Arc(newn,ss)); 
+    //      newn.incrMass(2); 
+    //      ss.incrMass(2); 
+    //    }   
+    //    break; 
     case POLYNET: 
-      float prob=random(1); 
-      newn=new Node(random(width),random(height),10, ns.size() + 1);           
-      ns.add(newn); 
-      for(Iterator it2=ns.iterator();it2.hasNext();){ 
-        Node m=(Node)it2.next();           
-        if (newn==m) continue; 
-        as.add(new Arc(newn,m)); 
-      } 
-      break; 
+      addNode(width, height, 10, "hi");
+//      float prob=random(1); 
+//                newn=new Node(random(width),random(height),10, ns.size() + 1);           
+//                ns.add(newn); 
+//                for(Iterator it2=ns.iterator();it2.hasNext();){ 
+//                  Node m=(Node)it2.next();           
+//                  if (newn==m) continue; 
+//                  as.add(new Arc(newn,m)); 
+//                } 
+//      break; 
     }     
   } 
   background(254); 
