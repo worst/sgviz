@@ -287,9 +287,22 @@ void draw(){
             for (int ii = 0; ii < msg.length(); ii++) {
               println("msg[" + ii + "] = " + int(a[ii]));
             }*/
-      if (msg.equals("addNode")) {
-        println("New node requested");
-        addNode(width, height, 10, "hi");
+
+      String r_addNode = "addNode ([a-zA-Z0-9_-]+)";
+      
+      Pattern p_addNode = Pattern.compile(r_addNode);
+      
+      if (Pattern.matches(r_addNode, msg)) {
+        
+        println("New node requested: [" + msg + "]");
+
+        Matcher m = p_addNode.matcher(msg);
+
+        m.find();
+        String node_id = m.group(1);
+        println("node_id = " + node_id);
+        
+        addNode(width, height, 10, node_id);
       }
     }
   }
