@@ -275,10 +275,22 @@ void draw(){
  // saveFrame("processing_sketch_saveFrame_test-####.png");
  //sgDataListener.write("There are: " + ns.size() + " nodes being visualized...");
  Client client = sgDataListener.available();
- if (client != null) {
-   String msg = client.readString();
-   if (msg != null) {
-     println(client.ip() + ": msg");
-   }
- }
+  if (client != null) {
+    String msg = client.readString();
+    if (msg != null) {
+      println(client.ip() + ": " + msg);
+      println("msg.length() = " + msg.length());
+      msg = msg.trim();
+      println("msg.length() (post trim)= " + msg.length());
+      /*println("\"addNode\".length = " + "addNode".length());
+            char a[] = msg.toCharArray();
+            for (int ii = 0; ii < msg.length(); ii++) {
+              println("msg[" + ii + "] = " + int(a[ii]));
+            }*/
+      if (msg.equals("addNode")) {
+        println("New node requested");
+        addNode(width, height, 10, "hi");
+      }
+    }
+  }
 } 
