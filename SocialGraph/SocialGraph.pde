@@ -109,7 +109,7 @@ void prepare(){
     nn = 5; 
     k=sqrt(width*height/nn)*.5; 
     k2=k*.2;
-    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),10, "node: " + (ns.size()+1))); 
+    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),10, "" + (ns.size()+1))); 
     break; 
   }   
   curn=0; 
@@ -129,15 +129,47 @@ void addNode(float width, float height, float mass, String id) {
  Node newn=null; 
  newn=new Node(random(width),random(height),10, id);           
  ns.add(newn); 
- for(Iterator it2=ns.iterator();it2.hasNext();){ 
-   Node m=(Node)it2.next();           
-   if (newn==m) continue; 
-   as.add(new Arc(newn,m)); 
- }
+ 
  k=sqrt(width*height/ns.size())*.5; 
  k2=k*.2;
  
 }
+
+void addEdge(String from_id, String to_id) {
+
+  if (from_id.equals(to_id))
+    return;
+
+  Node from = null;
+  Node to = null;
+
+  for(Iterator it = ns.iterator(); it.hasNext();) {
+    Node n = (Node)it.next();
+    if (from == null && n.node_id.equals(from_id)) {
+      from = n;
+      continue;
+    } else if (to == null && n.node_id.equals(to_id)) {
+      to = n;
+    }
+  
+    if (from != null && to != null)
+      break;
+  }
+  
+  if (from == null) {
+    println("ERROR: Could not find from node");
+  } else if (to == null) {
+    println("ERROR: Could not frim to node");
+  }
+  
+  as.add(new Arc(from, to));
+  
+  /*for(Iterator it2=ns.iterator();it2.hasNext();){ 
+     Node m=(Node)it2.next();           
+     if (newn==m) continue; 
+     as.add(new Arc(newn,m));*/
+}
+
  
 void draw(){ 
   if ((t++%vel)==0 && curn<nn){  
@@ -169,7 +201,7 @@ void draw(){
     //    }   
     //    break; 
     case POLYNET: 
-      addNode(width, height, 10, "node: " + (ns.size() + 1));
+      addNode(width, height, 10, "" + (ns.size() + 1));
 //      float prob=random(1); 
 //                newn=new Node(random(width),random(height),10, ns.size() + 1);           
 //                ns.add(newn); 
@@ -291,10 +323,13 @@ void draw(){
               println("msg[" + ii + "] = " + int(a[ii]));
             }*/
 
-      String r_addNode = "addNode ([a-zA-Z0-9_-]+)";
+      String r_addNode = "add_node ([a-zA-Z0-9_-]+)";
+      String r_addEdge = "add_edge ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+)";
       
       Pattern p_addNode = Pattern.compile(r_addNode);
+      Pattern p_addEdge = Pattern.compile(r_addEdge);
       
+      // regexes in java are pretty crappy... or i'm doing something wrong
       if (Pattern.matches(r_addNode, msg)) {
         
         println("New node requested: [" + msg + "]");
@@ -306,6 +341,22 @@ void draw(){
         println("node_id = " + node_id);
         
         addNode(width, height, 10, node_id);
+      }
+      
+      else if (Pattern.matches(r_addEdge, msg)) {
+        
+        println("New edge requested: [" + msg + "]");
+        
+        Matcher m = p_addEdge.matcher(msg);
+        
+        m.find();
+        String from_id = m.group(1);
+        String to_id = m.group(2);
+        
+        println("from_id = " + from_id);
+        println("to_id = " + to_id);
+        
+        addEdge(from_id, to_id);
       }
     }
   }
