@@ -11,6 +11,8 @@
 
 //MovieMaker mm;
 
+import processing.net.*; // for server
+
 float mouseMass=30; 
  
 boolean renderTrail=true; 
@@ -31,7 +33,10 @@ int curn,nn;
 float curMass; 
 static final int RANDOM=0; 
 static final int POLYNET=1; 
-int im; 
+int im;
+
+// so used to _ instead of camel case :(
+Server sgDataListener; // listen for changes to the sg here
 
 // NO FANCY MODES PLZ.
 // void keyPressed(){ 
@@ -75,7 +80,10 @@ void setup(){
   tMass=1; 
   curn=0;
   //mm = new MovieMaker(this, width, height, "fdp_v3_export-###.mov");
-  psystems = new ArrayList();  
+  psystems = new ArrayList();
+  
+  // setup the server (should this be configurable? (probably)) 
+  sgDataListener = new Server(this, 5204);
 } 
  
 // void mousePressed(){ 
@@ -95,7 +103,7 @@ void prepare(){
     ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),4, ns.size()+1)); 
     break; 
   case POLYNET: 
-    nn=7; 
+    nn = 5; 
     k=sqrt(width*height/nn)*.5; 
     k2=k*.2;
     ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),10, ns.size()+1)); 
@@ -113,6 +121,7 @@ float fr(float m1, float m2, float z){
 }
 
 void addNode(float width, float height, float mass, String id) {
+
  float prob=random(1); 
  Node newn=null; 
  newn=new Node(random(width),random(height),10, ns.size() + 1);           
@@ -122,6 +131,8 @@ void addNode(float width, float height, float mass, String id) {
    if (newn==m) continue; 
    as.add(new Arc(newn,m)); 
  }
+ k=sqrt(width*height/ns.size())*.5; 
+ k2=k*.2;
  
 }
  
@@ -167,6 +178,7 @@ void draw(){
 //      break; 
     }     
   } 
+  
   background(254); 
   if (tMass<1){ 
     tMass+=.1; 
@@ -261,5 +273,12 @@ void draw(){
     //mm.addFrame();
   
  // saveFrame("processing_sketch_saveFrame_test-####.png");
- 
+ //sgDataListener.write("There are: " + ns.size() + " nodes being visualized...");
+ Client client = sgDataListener.available();
+ if (client != null) {
+   String msg = client.readString();
+   if (msg != null) {
+     println(client.ip() + ": msg");
+   }
+ }
 } 
