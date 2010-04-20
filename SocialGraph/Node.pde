@@ -60,7 +60,7 @@ class Node{
       fill(mycolor);
       ellipse(pos.x,pos.y,mass,mass);
       fill(0);
-      println("node_id = " + node_id);
+      //println("node_id = " + node_id);
       text(node_id, pos.x - mass*1.5/2.0, pos.y /*- mass/10.0*/ /*, mass*1.5, mass*1.5*/);    
     } 
   } 
