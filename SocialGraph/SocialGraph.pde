@@ -212,6 +212,20 @@ void updateEdge(Arc e, float weight) {
   int idx = as.indexOf(e);
   as.remove(e);
   as.add(e);
+  e.lastUpdateColor = e.highlightStart;
+  e.updateTicksRemaining += frameRate;
+  
+  e.v.lastUpdateColor = e.v.highlightStart;
+  e.v.updateTicksRemaining += frameRate/2;
+  
+  e.updateUQueue.add(new Integer(int(frameRate/2)));
+
+  /*e.v.lastUpdateColor = e.v.highlightStart;
+  e.v.updateTicksRemaining += frameRate; 
+  
+  e.u.lastUpdateColor = e.u.highlightStart;
+  e.u.updateTicksRemaining += frameRate;*/
+
 }
  
 void draw(){ 

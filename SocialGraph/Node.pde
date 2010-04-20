@@ -8,6 +8,12 @@ class Node{
   boolean trail; 
   boolean ball;
   String node_id = null;
+  boolean needsUpdate = false;
+  color highlightStart = #FFFF00;
+  color lastUpdateColor = #FFFF00;
+  int updateTicksRemaining = 0;
+  /*color highlightStart = #FFFF00;
+    color lastUpdateColor = null;*/
   
   Node(float _x, float _y,float _mass, String _node_id){ 
     //println("_node_id = " + _node_id);
@@ -56,8 +62,19 @@ class Node{
       fill(mycolor); 
       ellipse(pos.x,pos.y,mass*1.5,mass*1.5); 
       fill(240,240,240); 
-      ellipse(pos.x,pos.y,mass*1.5,mass*1.5); 
+      ellipse(pos.x,pos.y,mass*1.5,mass*1.5);
+      
       fill(mycolor);
+      if (updateTicksRemaining > 0) {
+        //println("node needs vis update");
+        lastUpdateColor = blendColor(mycolor, lastUpdateColor, BLEND);
+        color c = lastUpdateColor;
+        updateTicksRemaining--;
+        fill(c);
+        
+      }
+       
+      
       ellipse(pos.x,pos.y,mass,mass);
       fill(0);
       //println("node_id = " + node_id);

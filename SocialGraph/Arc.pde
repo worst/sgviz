@@ -3,6 +3,14 @@ class Arc{
   Node u;
   String tag;
   float weight = 1;
+  boolean needsUpdate = false;
+  int updateTicksRemaining = 0;
+  color highlightStart = #FFFF00;
+  color lastUpdateColor = #FFFF00;
+  
+  // HACK this is a giant hack!!!
+  ArrayList updateUQueue = new ArrayList(); // this is such a fucking hack
+  
   Arc(Node _s, Node _e){ 
     v=_s; 
     u=_e;
@@ -18,13 +26,30 @@ class Arc{
     int r=(int)((red(v.mycolor)+red(u.mycolor))/2); 
     int g=(int)((green(v.mycolor)+green(u.mycolor))/2); 
     int b=(int)((blue(v.mycolor)+blue(u.mycolor))/2);
-    stroke(r,g,b);
+    color c = color(r, g, b);
+
     
     if (tag.equals("work")) {
-      color c = #0000FF;
-      stroke(c);
+      c = #0000FF;
     }     
-
+    
+    if (updateTicksRemaining > 0) {
+      lastUpdateColor = blendColor(c, lastUpdateColor, BLEND);
+      c = lastUpdateColor;
+      updateTicksRemaining--;
+      
+      if (updateUQueue.size() > 0) {
+       int ticksLeftBeforeUpdate = ((Integer)updateUQueue.remove(0)).intValue();
+       if (ticksLeftBeforeUpdate > 1) {
+         ticksLeftBeforeUpdate--;
+         updateUQueue.add(0, new Integer(ticksLeftBeforeUpdate));
+       } else {
+         u.lastUpdateColor = u.highlightStart;
+         u.updateTicksRemaining += frameRate/2;
+       }
+      }
+    }
+    stroke(c);
     strokeWeight(weight);
     //stroke(r,g,b); 
     line(v.pos.x,v.pos.y,u.pos.x,u.pos.y); 
