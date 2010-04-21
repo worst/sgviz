@@ -1,0 +1,221 @@
+2010-04-21 13:56:53,393:initialize 0:add_node 0
+2010-04-21 13:56:53,393:initialize 0:add_node 128
+2010-04-21 13:56:53,393:initialize 0:add_edge 0 128 school 0.18
+2010-04-21 13:56:53,393:initialize 0:add_node 91
+2010-04-21 13:56:53,393:initialize 0:add_edge 0 91 school 0.18
+2010-04-21 13:56:53,393:initialize 0:add_node 55
+2010-04-21 13:56:53,393:initialize 0:add_edge 0 55 school 0.12
+2010-04-21 13:56:53,394:initialize 0:add_node 12
+2010-04-21 13:56:53,394:initialize 0:add_edge 0 12 school 0.1
+2010-04-21 13:56:53,394:initialize 0:add_node 8
+2010-04-21 13:56:53,394:initialize 0:add_edge 0 8 school 0.12
+2010-04-21 13:56:53,394:initialize 0:add_node 182
+2010-04-21 13:56:53,394:initialize 0:add_edge 0 182 school 0.13
+2010-04-21 13:56:53,394:initialize 0:add_node 14
+2010-04-21 13:56:53,395:initialize 0:add_edge 0 14 school 0.1
+2010-04-21 13:56:53,395:initialize 0:add_node 1
+2010-04-21 13:56:53,395:initialize 14:add_node 22
+2010-04-21 13:56:53,395:initialize 0:add_edge 0 1 school 1.0
+2010-04-21 13:56:53,395:initialize 14:add_edge 14 22 school 0.14
+2010-04-21 13:56:53,395:initialize 0:add_node 228
+2010-04-21 13:56:53,395:initialize 14:add_node 48
+2010-04-21 13:56:53,395:initialize 0:add_edge 0 228 school 0.19
+2010-04-21 13:56:53,395:initialize 14:add_edge 14 48 school 0.16
+2010-04-21 13:56:53,396:initialize 0:add_node 146
+2010-04-21 13:56:53,396:initialize 14:add_node 274
+2010-04-21 13:56:53,396:initialize 0:add_edge 0 146 school 0.14
+2010-04-21 13:56:53,396:initialize 9:add_node 9
+2010-04-21 13:56:53,397:initialize 9:add_edge 9 0 school 0.1
+2010-04-21 13:56:53,397:initialize 0:add_node 41
+2010-04-21 13:56:53,396:initialize 14:add_edge 14 274 school 0.23
+2010-04-21 13:56:53,397:initialize 14:add_node 459
+2010-04-21 13:56:53,397:initialize 0:add_edge 0 41 school 0.11
+2010-04-21 13:56:53,397:initialize 9:add_node 29
+2010-04-21 13:56:53,397:initialize 9:add_edge 9 29 school 0.16
+2010-04-21 13:56:53,397:initialize 0:add_node 177
+2010-04-21 13:56:53,398:initialize 0:add_edge 0 177 school 0.14
+2010-04-21 13:56:53,398:initialize 0:add_node 63
+2010-04-21 13:56:53,398:initialize 0:add_edge 0 63 school 0.1
+2010-04-21 13:56:53,397:initialize 14:add_edge 14 459 school 0.34
+2010-04-21 13:56:53,398:initialize 9:add_node 3
+2010-04-21 13:56:53,398:initialize 0:add_node 70
+2010-04-21 13:56:53,398:initialize 91:add_edge 91 0 school 0.1
+2010-04-21 13:56:53,399:initialize 91:add_node 28
+2010-04-21 13:56:53,399:initialize 91:add_edge 91 28 school 0.1
+2010-04-21 13:56:53,399:initialize 91:add_node 85
+2010-04-21 13:56:53,399:initialize 0:add_edge 0 70 school 0.1
+2010-04-21 13:56:53,400:initialize 0:add_node 156
+2010-04-21 13:56:53,400:initialize 91:add_edge 91 85 school 0.1
+2010-04-21 13:56:53,400:initialize 91:add_node 92
+2010-04-21 13:56:53,399:initialize 27:add_node 27
+2010-04-21 13:56:53,399:initialize 14:add_node 80
+2010-04-21 13:56:53,400:initialize 0:add_edge 0 156 school 0.12
+2010-04-21 13:56:53,400:initialize 0:add_node 27
+2010-04-21 13:56:53,400:initialize 0:add_edge 0 27 school 0.1
+2010-04-21 13:56:53,400:initialize 91:add_edge 91 92 school 0.71
+2010-04-21 13:56:53,400:initialize 27:add_node 11
+2010-04-21 13:56:53,400:initialize 14:add_edge 14 80 school 0.17
+2010-04-21 13:56:53,400:initialize 0:add_edge 0 9 school 0.1
+2010-04-21 13:56:53,401:initialize 0:add_node 2
+2010-04-21 13:56:53,401:initialize 0:add_edge 0 2 school 0.1
+2010-04-21 13:56:53,401:initialize 91:add_node 6
+2010-04-21 13:56:53,401:initialize 27:add_edge 27 11 school 0.1
+2010-04-21 13:56:53,401:initialize 14:add_node 171
+2010-04-21 13:56:53,399:initialize 9:add_edge 9 3 school 0.1
+2010-04-21 13:56:53,402:initialize 9:add_node 32
+2010-04-21 13:56:53,401:initialize 0:add_node 4
+2010-04-21 13:56:53,401:initialize 91:add_edge 91 6 school 0.1
+2010-04-21 13:56:53,401:initialize 27:add_node 162
+2010-04-21 13:56:53,401:initialize 14:add_edge 14 171 school 0.22
+2010-04-21 13:56:53,402:initialize 0:add_edge 0 4 school 0.1
+2010-04-21 13:56:53,402:initialize 0:add_node 49
+2010-04-21 13:56:53,402:initialize 0:add_edge 0 49 school 0.12
+2010-04-21 13:56:53,402:initialize 91:add_node 302
+2010-04-21 13:56:53,402:initialize 27:add_edge 27 162 school 0.1
+2010-04-21 13:56:53,402:initialize 14:add_edge 14 8 school 0.1
+2010-04-21 13:56:53,402:initialize 0:add_node 52
+2010-04-21 13:56:53,403:initialize 0:add_edge 0 52 school 0.1
+2010-04-21 13:56:53,403:initialize 0:add_node 35
+2010-04-21 13:56:53,402:initialize 91:add_edge 91 302 school 0.46
+2010-04-21 13:56:53,403:initialize 27:add_node 297
+2010-04-21 13:56:53,403:initialize 14:add_node 135
+2010-04-21 13:56:53,403:initialize 14:add_edge 14 135 school 0.12
+2010-04-21 13:56:53,403:initialize 14:add_node 104
+2010-04-21 13:56:53,403:initialize 0:add_edge 0 35 school 0.12
+2010-04-21 13:56:53,403:initialize 91:add_node 791
+2010-04-21 13:56:53,403:initialize 27:add_edge 27 297 school 0.1
+2010-04-21 13:56:53,403:initialize 14:add_edge 14 104 school 0.14
+2010-04-21 13:56:53,404:initialize 14:add_edge 14 0 school 0.1
+2010-04-21 13:56:53,404:initialize 14:add_node 306
+2010-04-21 13:56:53,404:initialize 0:add_node 10
+2010-04-21 13:56:53,404:initialize 91:add_edge 91 791 school 0.14
+2010-04-21 13:56:53,404:initialize 27:add_edge 27 12 school 0.1
+2010-04-21 13:56:53,404:initialize 27:add_edge 27 0 school 0.1
+2010-04-21 13:56:53,404:initialize 14:add_edge 14 306 school 0.16
+2010-04-21 13:56:53,405:initialize 14:add_node 32
+2010-04-21 13:56:53,404:initialize 0:add_edge 0 10 school 0.1
+2010-04-21 13:56:53,404:initialize 91:add_node 97
+2010-04-21 13:56:53,405:initialize 27:add_node 263
+2010-04-21 13:56:53,406:initialize 27:add_edge 27 263 school 0.1
+2010-04-21 13:56:53,405:initialize 14:add_edge 14 32 school 0.18
+2010-04-21 13:56:53,406:initialize 14:add_node 16
+2010-04-21 13:56:53,406:initialize 14:add_edge 14 16 school 1.0
+2010-04-21 13:56:53,406:initialize 27:add_node 50
+2010-04-21 13:56:53,406:initialize 27:add_edge 27 50 school 0.1
+2010-04-21 13:56:53,406:initialize 27:add_node 36
+2010-04-21 13:56:53,406:initialize 27:add_edge 27 36 school 0.1
+2010-04-21 13:56:53,406:initialize 14:add_node 115
+2010-04-21 13:56:53,406:initialize 27:add_node 67
+2010-04-21 13:56:53,407:initialize 27:add_edge 27 67 school 0.1
+2010-04-21 13:56:53,407:initialize 27:add_node 66
+2010-04-21 13:56:53,407:initialize 27:add_edge 27 66 school 0.1
+2010-04-21 13:56:53,407:initialize 14:add_edge 14 115 school 0.17
+2010-04-21 13:56:53,402:initialize 9:add_edge 9 32 school 0.12
+2010-04-21 13:56:53,408:initialize 9:add_node 224
+2010-04-21 13:56:53,408:initialize 9:add_edge 9 224 school 0.54
+2010-04-21 13:56:53,407:initialize 14:add_edge 14 36 school 0.1
+2010-04-21 13:56:53,408:initialize 9:add_node 343
+2010-04-21 13:56:53,408:initialize 9:add_edge 9 343 school 0.36
+2010-04-21 13:56:53,409:initialize 9:add_node 119
+2010-04-21 13:56:53,409:initialize 9:add_edge 9 119 school 0.21
+2010-04-21 13:56:53,409:initialize 9:add_edge 9 2 school 0.1
+2010-04-21 13:56:53,409:initialize 9:add_edge 9 6 school 0.1
+2010-04-21 13:56:53,409:initialize 9:add_node 120
+2010-04-21 13:56:53,409:initialize 9:add_edge 9 120 school 0.1
+2010-04-21 13:56:53,409:initialize 9:add_edge 9 16 school 1.0
+2010-04-21 13:56:53,399:initialize 41:add_node 46
+2010-04-21 13:56:53,405:initialize 91:add_edge 91 97 school 0.1
+2010-04-21 13:56:53,410:initialize 41:add_edge 41 46 school 0.1
+2010-04-21 13:56:53,410:initialize 91:add_node 723
+2010-04-21 13:56:53,410:initialize 41:add_node 307
+2010-04-21 13:56:53,410:initialize 91:add_edge 91 723 school 0.86
+2010-04-21 13:56:53,410:initialize 41:add_edge 41 307 school 0.1
+2010-04-21 13:56:53,411:initialize 91:add_node 99
+2010-04-21 13:56:53,411:initialize 41:add_node 15
+2010-04-21 13:56:53,412:initialize 41:add_edge 41 15 school 0.1
+2010-04-21 13:56:53,413:initialize 41:add_node 230
+2010-04-21 13:56:53,414:initialize 41:add_edge 41 230 school 0.1
+2010-04-21 13:56:53,411:initialize 91:add_edge 91 99 school 0.12
+2010-04-21 13:56:53,411:initialize 35:add_node 711
+2010-04-21 13:56:53,413:initialize 12:add_edge 12 27 school 0.33
+2010-04-21 13:56:53,415:initialize 12:add_node 38
+2010-04-21 13:56:53,413:initialize 70:add_node 527
+2010-04-21 13:56:53,416:initialize 70:add_edge 70 527 school 0.39
+2010-04-21 13:56:53,416:initialize 70:add_edge 70 0 school 0.1
+2010-04-21 13:56:53,412:initialize 146:add_node 466
+2010-04-21 13:56:53,415:initialize 228:add_node 38
+2010-04-21 13:56:53,415:initialize 35:add_edge 35 711 school 0.1
+2010-04-21 13:56:53,417:initialize 35:add_node 64
+2010-04-21 13:56:53,417:initialize 35:add_edge 35 64 school 0.1
+2010-04-21 13:56:53,416:initialize 177:add_edge 177 0 school 0.1
+2010-04-21 13:56:53,414:initialize 41:add_node 487
+2010-04-21 13:56:53,417:initialize 41:add_edge 41 487 school 0.1
+2010-04-21 13:56:53,416:initialize 70:add_node 96
+2010-04-21 13:56:53,416:initialize 146:add_edge 146 466 school 0.1
+2010-04-21 13:56:53,417:initialize 228:add_edge 228 38 school 0.1
+2010-04-21 13:56:53,418:initialize 228:add_node 139
+2010-04-21 13:56:53,418:initialize 228:add_edge 228 139 school 0.1
+2010-04-21 13:56:53,417:initialize 35:add_node 149
+2010-04-21 13:56:53,417:initialize 177:add_node 142
+2010-04-21 13:56:53,414:initialize 156:add_edge 156 0 school 0.1
+2010-04-21 13:56:53,421:initialize 156:add_node 196
+2010-04-21 13:56:53,418:initialize 70:add_edge 70 96 school 0.24
+2010-04-21 13:56:53,422:initialize 70:add_edge 70 46 school 0.1
+2010-04-21 13:56:53,418:initialize 146:add_edge 146 22 school 0.1
+2010-04-21 13:56:53,413:initialize 63:add_node 414
+2010-04-21 13:56:53,422:initialize 63:add_edge 63 414 school 0.18
+2010-04-21 13:56:53,418:initialize 274:add_node 496
+2010-04-21 13:56:53,421:initialize 228:add_edge 228 0 school 0.1
+2010-04-21 13:56:53,421:initialize 35:add_edge 35 149 school 0.1
+2010-04-21 13:56:53,421:initialize 177:add_edge 177 142 school 0.1
+2010-04-21 13:56:53,422:initialize 177:add_node 395
+2010-04-21 13:56:53,423:initialize 177:add_edge 177 395 school 0.11
+2010-04-21 13:56:53,421:initialize 156:add_edge 156 196 school 0.19
+2010-04-21 13:56:53,422:initialize 70:add_node 61
+2010-04-21 13:56:53,423:initialize 70:add_edge 70 61 school 0.1
+2010-04-21 13:56:53,422:initialize 146:add_node 773
+2010-04-21 13:56:53,415:initialize 12:add_edge 12 38 school 0.12
+2010-04-21 13:56:53,423:initialize 12:add_edge 12 0 school 0.1
+2010-04-21 13:56:53,422:initialize 274:add_edge 274 496 school 0.33
+2010-04-21 13:56:53,422:initialize 228:add_node 165
+2010-04-21 13:56:53,422:initialize 35:add_node 231
+2010-04-21 13:56:53,421:initialize 306:add_node 181
+2010-04-21 13:56:53,424:initialize 306:add_edge 306 181 school 0.1
+2010-04-21 13:56:53,424:initialize 306:add_node 590
+2010-04-21 13:56:53,423:initialize 156:add_node 26
+2010-04-21 13:56:53,423:initialize 70:add_node 17
+2010-04-21 13:56:53,424:initialize 70:add_edge 70 17 school 0.1
+2010-04-21 13:56:53,423:initialize 146:add_edge 146 773 school 0.1
+2010-04-21 13:56:53,423:initialize 12:add_node 167
+2010-04-21 13:56:53,424:initialize 12:add_edge 12 167 school 0.11
+2010-04-21 13:56:53,423:initialize 274:add_edge 274 14 school 0.1
+2010-04-21 13:56:53,423:initialize 228:add_edge 228 165 school 0.1
+2010-04-21 13:56:53,424:initialize 35:add_edge 35 231 school 0.1
+2010-04-21 13:56:53,424:initialize 306:add_edge 306 590 school 0.1
+2010-04-21 13:56:53,425:initialize 306:add_node 397
+2010-04-21 13:56:53,425:initialize 306:add_edge 306 397 school 0.1
+2010-04-21 13:56:53,424:initialize 156:add_edge 156 26 school 0.1
+2010-04-21 13:56:53,424:initialize 70:add_node 246
+2010-04-21 13:56:53,425:initialize 70:add_edge 70 246 school 0.13
+2010-04-21 13:56:53,424:initialize 146:add_node 159
+2010-04-21 13:56:53,424:initialize 12:add_node 60
+2010-04-21 13:56:53,426:initialize 12:add_edge 12 60 school 0.1
+2010-04-21 13:56:53,425:initialize 274:add_node 103
+2010-04-21 13:56:53,425:initialize 228:add_node 383
+2010-04-21 13:56:53,425:initialize 35:add_edge 35 99 school 0.1
+2010-04-21 13:56:53,425:initialize 306:add_node 293
+2010-04-21 13:56:53,427:initialize 306:add_edge 306 293 school 0.1
+2010-04-21 13:56:53,427:initialize 306:add_node 248
+2010-04-21 13:56:53,425:initialize 156:add_node 940
+2010-04-21 13:56:53,427:initialize 156:add_edge 156 940 school 0.26
+2010-04-21 13:56:53,427:initialize 156:add_node 71
+2010-04-21 13:56:53,426:initialize 12:add_node 530
+2010-04-21 13:56:53,428:initialize 12:add_edge 12 530 school 0.24
+2010-04-21 13:56:53,427:initialize 274:add_edge 274 103 school 0.1
+2010-04-21 13:56:53,427:initialize 228:add_edge 228 383 school 0.38
+2010-04-21 13:56:53,427:initialize 35:add_edge 35 17 school 0.1
+2010-04-21 13:56:53,428:initialize 35:add_edge 35 38 school 0.1
+2010-04-21 13:56:53,428:initialize 35:add_edge 35 0 school 0.1
+2010-04-21 13:56:53,427:initialize 306:add_edge 306 248 school 0.1
+2010-04-21 13:56:53,428:initialize 156:add_edge 156 71 school 0.1
+2010-04-21 13:56:53,429:initialize 156:add_node 152
