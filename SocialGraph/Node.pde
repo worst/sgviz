@@ -13,6 +13,7 @@ class Node{
   color highlightStart = #FFFF00;
   color lastUpdateColor = #FFFF00;
   int updateTicksRemaining = 0;
+  boolean on_trusted_peer = false;
   /*color highlightStart = #FFFF00;
     color lastUpdateColor = null;*/
   

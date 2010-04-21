@@ -128,6 +128,36 @@ float fr(float m1, float m2, float z){
   //return 20*(m1*m2)/pow(z,2); 
 }
 
+void setTrusted(Node n) {
+  n.on_trusted_peer = true;
+  int peer = -1;
+  for (int i = 0; i < peers.length; i++) {
+    // do we already know about this peer?
+    // do we have empty room for the peer?
+    if (peers[i] == null) {
+      peers[i] = n.peer_id;
+      peer = i;
+      println("Found unused quadrant");
+      break;
+    }
+    
+    if (peers[i].equals(n.peer_id)) {
+      peer = i;
+      println("Found known quadrant");
+      break;
+    }
+    
+    
+  }
+  
+  if (peer < 0) {
+    println("UNABLE TO FIND A SUITABLE PEER TO SEGREGATE THIS WITHIN!!!");
+    return;
+  }
+  
+  n.mycolor = peer_colors[peer];
+}
+
 void addNode(float width, float height, float mass, String id, String peer_id) {
   // first check to make sure that the node id is unique
   for (Iterator it = ns.iterator(); it.hasNext();) {
@@ -169,9 +199,11 @@ void addNode(float width, float height, float mass, String id, String peer_id) {
   }
   
   Node newn = null;
+  /*float x, y;*/
   newn = new Node(random(width), random(height), mass, id, peer_id);           
   ns.add(newn);
-  newn.mycolor = peer_colors[peer];
+  //newn.mycolor = peer_colors[peer];
+  newn.mycolor = color(240,240,240);
  
   k=sqrt(width*height/ns.size())*.5; 
   k2=k*.2;
@@ -550,10 +582,12 @@ void draw(){
       String r_addNode = "add_node ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+)";
       String r_addEdge = "add_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+)";
       String r_updateEdge = "update_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
+      String r_setTrusted = "set_trusted ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+)";
       
       Pattern p_addNode = Pattern.compile(r_addNode);
       Pattern p_addEdge = Pattern.compile(r_addEdge);
       Pattern p_updateEdge = Pattern.compile(r_updateEdge);
+      Pattern p_setTrusted = Pattern.compile(r_setTrusted);
       
       // regexes in java are pretty crappy... or i'm doing something wrong
       if (Pattern.matches(r_addNode, msg)) {
@@ -612,6 +646,21 @@ void draw(){
         if (e != null)
           updateEdge(e, weight);
         
+      } else if (Pattern.matches(r_setTrusted, msg)) {
+         println("Set trust requested: [" + msg + "]");
+         
+         Matcher m = p_setTrusted.matcher(msg);
+         
+         m.find();
+         
+         String peer_id = m.group(1);
+         String node_id = m.group(2);
+         
+         Node n = findNode(peer_id, node_id);
+         
+         if (n != null) {
+           setTrusted(n);
+         }
       } else {
         println("NO MATCHING COMMAND FOUND");
       }
