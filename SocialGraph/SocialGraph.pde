@@ -484,6 +484,12 @@ void draw(){
       psystems.remove(i);
     }
   }
+  
+  // draw lines to separate the quadrants
+  stroke(0, 0, 0);
+  line(0, height/2, width, height/2);
+  line(width/2, 0, width/2, height);
+  
   noFill(); 
   stroke(200,100,0,20); 
   //ellipse(mouseX,mouseY,curMass,curMass);
