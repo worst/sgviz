@@ -21,7 +21,7 @@ float mouseMass=30;
 boolean renderTrail=true; 
 boolean renderArcs=true; 
 boolean mouseAttract=false; 
-boolean centerAttract = true;
+boolean centerAttract = false;
 boolean mouseRepulse=false; 
 boolean renderBalls=true; 
 
@@ -75,7 +75,7 @@ Server sgDataListener; // listen for changes to the sg here
 // } 
  
 void setup(){ 
-  size(400,400,JAVA2D);   
+  size(800, 600, JAVA2D);   
   smooth(); 
 //  frameRate(1); 
   ns=new ArrayList(); 
