@@ -40,7 +40,7 @@ static final int RANDOM=0;
 static final int POLYNET=1;
 static final int FREE = 2;
 String peers[] = {null, null, null, null};
-/*color peer_colors[] = {new color(#FF3300), new color(#00CCCC), new color(#9966FF), new color(#FF00FF)};*/
+color peer_colors[] = {#FF3300, #00CCCC, #9966FF, #FF00FF};
 int im;
 
 // so used to _ instead of camel case :(
