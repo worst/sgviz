@@ -487,11 +487,47 @@ void draw(){
   
   // draw lines to separate the quadrants
   stroke(0, 0, 0);
+  strokeWeight(1);
   line(0, height/2, width, height/2);
   line(width/2, 0, width/2, height);
   
+  for (int i = 0; i < peers.length; i++) {
+    if (peers[i] == null)
+      break;
+    
+    textSize(20);
+    switch (i) {
+      case 0:
+        fill(peer_colors[i]);
+        text(peers[i], width/2 + 15, 25);
+        break;
+      case 1:
+        fill(peer_colors[i]);
+        text(peers[i], 15, 25);
+        break;
+      case 2:
+        fill(peer_colors[i]);
+        text(peers[i], 15, height/2 + 25);
+        break;
+      case 3:
+        fill(peer_colors[i]);
+        text(peers[i], width/2 + 15, height/2 + 25);
+        break;
+    }
+    textSize(12);
+  }
+  
+  // FOR DEBUGGING PURPOSES DRAW THE CENTER OF EACH QUADRANT
+  fill(0, 0, 0);
+  ellipse((float)width * 3.0/4.0, (float)height * 1.0/4.0, 10, 10);
+  ellipse((float)width * 1.0/4.0, (float)height * 1.0/4.0, 10, 10);
+  ellipse((float)width * 1.0/4.0, (float)height * 3.0/4.0, 10, 10);
+  ellipse((float)width * 3.0/4.0, (float)height * 3.0/4.0, 10, 10);
+  
   noFill(); 
-  stroke(200,100,0,20); 
+  stroke(200,100,0,20);
+  
+   
   //ellipse(mouseX,mouseY,curMass,curMass);
     //mm.addFrame();
   
