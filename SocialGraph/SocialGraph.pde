@@ -143,32 +143,50 @@ void addNode(float width, float height, float mass, String id) {
 
 void addEdge(String from_id, String to_id, String tag) {
 
+  // no self edges
   if (from_id.equals(to_id))
     return;
+    
+  // check to make sure an edge between the two nodes doesn't already exist
+  /*for (Iterator it = as.iterator(); it.hasNext();) {
+    Edge e = 
+  }*/
 
-  Node from = null;
-  Node to = null;
-
-  for(Iterator it = ns.iterator(); it.hasNext();) {
-    Node n = (Node)it.next();
-    if (from == null && n.node_id.equals(from_id)) {
-      from = n;
-      continue;
-    } else if (to == null && n.node_id.equals(to_id)) {
-      to = n;
-    }
+  Node from = findNode(from_id);
+  Node to = findNode(to_id);
   
-    if (from != null && to != null)
-      break;
-  }
+  
+  /*for(Iterator it = ns.iterator(); it.hasNext();) {
+     Node n = (Node)it.next();
+     if (from == null && n.node_id.equals(from_id)) {
+       from = n;
+       continue;
+     } else if (to == null && n.node_id.equals(to_id)) {
+       to = n;
+     }
+   
+     if (from != null && to != null)
+       break;
+   }*/
   
   if (from == null) {
     println("ERROR: Could not find from node");
+    return;
   } else if (to == null) {
     println("ERROR: Could not frim to node");
+    return;
   }
   
-  as.add(new Arc(from, to, tag));
+  // check to make sure that an edge doesn't already exist between these two
+  // nodes in the specified direction with a given tag
+  for (Iterator it = as.iterator(); it.hasNext();) {
+    Arc e = (Arc)it.next();
+    if (e.v.equals(from) && e.u.equals(to) && e.tag.equals(tag))
+      return;
+  }
+  Arc e = new Arc(from, to, tag);
+  as.add(e);
+  flashEdge(e);
   
   println("Number of edges is now: " + as.size());
   
@@ -198,6 +216,9 @@ Node findNode(String id) {
 }
 
 Arc findEdge(Node from, Node to, String tag) {
+  if (from == null || to == null || tag == null)
+    return null;
+    
   println("Searching for edge {u, v, t}: " + from.node_id + ", " + to.node_id + ", " + tag);
   for (Iterator it = as.iterator(); it.hasNext();) {
     Arc e = (Arc)it.next();
@@ -210,13 +231,8 @@ Arc findEdge(Node from, Node to, String tag) {
   return null;
 }
 
-void updateEdge(Arc e, float weight) {
-  e.weight = weight;
-  
-  // make sure this edge gets drawn.
-  int idx = as.indexOf(e);
-  as.remove(e);
-  as.add(e);
+
+void flashEdge(Arc e) {
   e.lastUpdateColor = e.highlightStart;
   e.updateTicksRemaining += frameRate*2;
   
@@ -224,6 +240,18 @@ void updateEdge(Arc e, float weight) {
   e.v.updateTicksRemaining += frameRate;
   
   e.updateUQueue.add(new Integer(int(frameRate)));
+  
+}
+void updateEdge(Arc e, float weight) {
+  e.weight = weight;
+  
+  // make sure this edge gets drawn.
+  int idx = as.indexOf(e);
+  as.remove(e);
+  as.add(e);
+  //Collections.rotate(as, 0 - idx);
+  
+  flashEdge(e);
 
   /*e.v.lastUpdateColor = e.v.highlightStart;
   e.v.updateTicksRemaining += frameRate; 
@@ -367,14 +395,14 @@ void draw(){
   }
   noFill(); 
   stroke(200,100,0,20); 
-  ellipse(mouseX,mouseY,curMass,curMass);
+  //ellipse(mouseX,mouseY,curMass,curMass);
     //mm.addFrame();
   
  // saveFrame("processing_sketch_saveFrame_test-####.png");
  //sgDataListener.write("There are: " + ns.size() + " nodes being visualized...");
  Client client = sgDataListener.available();
   if (client != null) {
-    String msg = client.readString();
+    String msg = client.readStringUntil(10);
     if (msg != null) {
       println(client.ip() + ": " + msg);
       println("msg.length() = " + msg.length());
@@ -442,9 +470,13 @@ void draw(){
         println("weight = " + weight);
         
         Arc e = findEdge(findNode(from_id), findNode(to_id), tag);
-        updateEdge(e, weight);
+        if (e != null)
+          updateEdge(e, weight);
         
       }
     }
   }
+
+  println("number of nodes: " + ns.size());
+  println("number of edges: " + as.size());
 } 
