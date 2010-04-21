@@ -126,9 +126,9 @@ float fr(float m1, float m2, float z){
 
 void addNode(float width, float height, float mass, String id) {
 
- float prob=random(1); 
- Node newn=null; 
- newn=new Node(random(width),random(height),10, id);           
+ float prob = random(1); 
+ Node newn = null; 
+ newn = new Node(random(width), random(height), mass, id);           
  ns.add(newn); 
  
  k=sqrt(width*height/ns.size())*.5; 
@@ -213,12 +213,12 @@ void updateEdge(Arc e, float weight) {
   as.remove(e);
   as.add(e);
   e.lastUpdateColor = e.highlightStart;
-  e.updateTicksRemaining += frameRate;
+  e.updateTicksRemaining += frameRate*2;
   
   e.v.lastUpdateColor = e.v.highlightStart;
-  e.v.updateTicksRemaining += frameRate/2;
+  e.v.updateTicksRemaining += frameRate;
   
-  e.updateUQueue.add(new Integer(int(frameRate/2)));
+  e.updateUQueue.add(new Integer(int(frameRate)));
 
   /*e.v.lastUpdateColor = e.v.highlightStart;
   e.v.updateTicksRemaining += frameRate; 
@@ -258,7 +258,7 @@ void draw(){
     //    }   
     //    break; 
     case POLYNET: 
-      addNode(width, height, 10, "" + (ns.size() + 1));
+      addNode(width, height, 40, "" + (ns.size() + 1));
       //linkAllNodes();
 //      float prob=random(1); 
 //                newn=new Node(random(width),random(height),10, ns.size() + 1);           
@@ -400,7 +400,7 @@ void draw(){
         String node_id = m.group(1);
         println("node_id = " + node_id);
         
-        addNode(width, height, 10, node_id);
+        addNode(width, height, 20, node_id);
       }
       else if (Pattern.matches(r_addEdge, msg)) {
         

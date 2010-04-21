@@ -7,6 +7,7 @@ class Arc{
   int updateTicksRemaining = 0;
   color highlightStart = #FFFF00;
   color lastUpdateColor = #FFFF00;
+  color defaultColor = #00FF00;
   
   // HACK this is a giant hack!!!
   ArrayList updateUQueue = new ArrayList(); // this is such a fucking hack
@@ -23,10 +24,13 @@ class Arc{
   }
    
   void draw(){ 
-    int r=(int)((red(v.mycolor)+red(u.mycolor))/2); 
-    int g=(int)((green(v.mycolor)+green(u.mycolor))/2); 
-    int b=(int)((blue(v.mycolor)+blue(u.mycolor))/2);
-    color c = color(r, g, b);
+    /*int r=(int)((red(v.mycolor)+red(u.mycolor))/2); 
+        int g=(int)((green(v.mycolor)+green(u.mycolor))/2); 
+        int b=(int)((blue(v.mycolor)+blue(u.mycolor))/2);*/
+
+    /*color c = color(r, g, b);*/
+    
+    color c = defaultColor;
 
     
     if (tag.equals("work")) {
@@ -45,7 +49,7 @@ class Arc{
          updateUQueue.add(0, new Integer(ticksLeftBeforeUpdate));
        } else {
          u.lastUpdateColor = u.highlightStart;
-         u.updateTicksRemaining += frameRate/2;
+         u.updateTicksRemaining += frameRate;
        }
       }
     }
