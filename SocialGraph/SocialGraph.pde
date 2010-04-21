@@ -78,7 +78,7 @@ Server sgDataListener; // listen for changes to the sg here
 // } 
  
 void setup(){ 
-  size(800, 600, JAVA2D);   
+  size(1024, 768, JAVA2D);   
   smooth(); 
 //  frameRate(1); 
   ns=new ArrayList(); 
