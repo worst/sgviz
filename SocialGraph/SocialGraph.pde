@@ -22,7 +22,7 @@ boolean renderTrail=true;
 boolean renderArcs=true; 
 boolean mouseAttract=false; 
 boolean centerAttract = false;
-boolean quadrantCenter = true;
+boolean quadrantAttract = true;
 boolean mouseRepulse=false; 
 boolean renderBalls=true; 
 
@@ -403,7 +403,7 @@ void draw(){
       }   
     }
     
-    if (quadrantCenter) {
+    if (quadrantAttract) {
       String peer = u.peer_id;
       int quadrant = -1;
       for (int i = 0; i < peers.length; i++) {
