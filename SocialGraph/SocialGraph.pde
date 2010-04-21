@@ -143,18 +143,19 @@ void addNode(float width, float height, float mass, String id, String peer_id) {
   // fuck this is a hack i should probably be using an arraylist...
   println("Searching for a known or unused quadrant...");
   boolean found_peer = false;
+  int peer = -1;
   for (int i = 0; i < peers.length; i++) {
     // do we already know about this peer?
     // do we have empty room for the peer?
     if (peers[i] == null) {
       peers[i] = peer_id;
-      found_peer = true;
+      peer = i;
       println("Found unused quadrant");
       break;
     }
     
     if (peers[i].equals(peer_id)) {
-      found_peer = true;
+      peer = i;
       println("Found known quadrant");
       break;
     }
@@ -162,14 +163,15 @@ void addNode(float width, float height, float mass, String id, String peer_id) {
     
   }
   
-  if (!found_peer) {
-    println("UNABLE TO FIND A SUITABLE PEER TO SEGREGATE THIS NODE TO!!!");
+  if (peer < 0) {
+    println("UNABLE TO FIND A SUITABLE PEER TO SEGREGATE THIS WITHIN!!!");
     return;
   }
   
   Node newn = null;
   newn = new Node(random(width), random(height), mass, id, peer_id);           
-  ns.add(newn); 
+  ns.add(newn);
+  newn.mycolor = peer_colors[peer];
  
   k=sqrt(width*height/ns.size())*.5; 
   k2=k*.2;
