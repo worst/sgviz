@@ -36,7 +36,7 @@ end
   nodes.shuffle!
   tags.shuffle!
   # note that the visualization expects weights to be floating point...
-  s = "update_edge #{peers[0]} #{nodes[0]} #{nodes[1]} #{tags[0]} #{rand(10) + 1}.0"
+  s = "update_edge #{peers[0]} #{nodes[0]} #{nodes[1]} #{tags[0]} #{rand(5) + 1}.0"
   puts s
   t.puts s
   
