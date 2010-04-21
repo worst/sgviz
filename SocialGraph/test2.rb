@@ -8,16 +8,14 @@ tags = ["work", "friend", "school"]
 
 t = TCPSocket.new('localhost', 5204)
 
-20.times do |i|
+100.times do |i|
 
   nodes.shuffle!
   s = "add_node #{nodes[0]}"
   puts s
   t.puts s
-  sleep rand 0
-end
 
-20.times do
+
   
   nodes.shuffle!
   tags.shuffle!
@@ -25,10 +23,6 @@ end
   puts s
   t.puts s
   
-  sleep rand 0
-end
-
-20.times do
 
   nodes.shuffle!
   tags.shuffle!
