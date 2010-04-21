@@ -21,6 +21,7 @@ float mouseMass=30;
 boolean renderTrail=true; 
 boolean renderArcs=true; 
 boolean mouseAttract=false; 
+boolean centerAttract = true;
 boolean mouseRepulse=false; 
 boolean renderBalls=true; 
 
@@ -340,6 +341,16 @@ void draw(){
   }   
   for(Iterator it=ns.iterator();it.hasNext();){ 
     Node u=(Node)it.next(); 
+    if (centerAttract) {
+      Vector2D centerpos=new Vector2D(width/2,height/2);   
+      Vector2D delta=u.pos.sub(centerpos); 
+      if (delta.norm()!=0){ 
+        u.disp.subSelf( delta.versor().mult( fa(u.mass,curMass,delta.norm()) ) ); 
+        stroke(0,0,0,20); 
+        //line(u.pos.x,u.pos.y,mouseX,mouseY); 
+        noStroke(); 
+      }
+    }
     if (mouseAttract){ 
       Vector2D mousepos=new Vector2D(mouseX,mouseY);   
       Vector2D delta=u.pos.sub(mousepos); 
@@ -477,6 +488,6 @@ void draw(){
     }
   }
 
-  println("number of nodes: " + ns.size());
-  println("number of edges: " + as.size());
+/*  println("number of nodes: " + ns.size());
+  println("number of edges: " + as.size());*/
 } 

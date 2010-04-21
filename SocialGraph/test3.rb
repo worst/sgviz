@@ -8,7 +8,7 @@ tags = ["work", "friend", "school"]
 
 t = TCPSocket.new('localhost', 5204)
 
-1000.times do |i|
+100.times do |i|
 
   nodes.shuffle!
   nodes << i
