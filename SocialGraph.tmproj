@@ -26,9 +26,29 @@
 		</dict>
 		<dict>
 			<key>filename</key>
+			<string>SocialGraph/test3.rb</string>
+			<key>lastUsed</key>
+			<date>2010-04-21T02:22:38Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
 			<string>SocialGraph/SocialGraph.pde</string>
 			<key>lastUsed</key>
-			<date>2010-04-21T00:03:54Z</date>
+			<date>2010-04-21T02:22:38Z</date>
+			<key>selected</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>SocialGraph/test2.rb</string>
+			<key>lastUsed</key>
+			<date>2010-04-21T02:20:57Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>SocialGraph/test.rb</string>
+			<key>lastUsed</key>
+			<date>2010-04-21T01:17:03Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -88,14 +108,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>19</integer>
+				<integer>36</integer>
 				<key>line</key>
-				<integer>143</integer>
+				<integer>407</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>118</integer>
+			<integer>446</integer>
 		</dict>
 		<key>SocialGraph/shower.pde</key>
 		<dict>
@@ -111,13 +131,87 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>SocialGraph/test.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>8</integer>
+				<key>line</key>
+				<integer>24</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>SocialGraph/test2.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>24</integer>
+				<key>line</key>
+				<integer>4</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>1</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>39</integer>
+				<key>line</key>
+				<integer>44</integer>
+			</dict>
+		</dict>
+		<key>SocialGraph/test3.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>39</integer>
+				<key>line</key>
+				<integer>46</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>10</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>39</integer>
+				<key>line</key>
+				<integer>46</integer>
+			</dict>
+		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>SocialGraph/SocialGraph.pde</string>
-		<string>SocialGraph/Arc.pde</string>
-		<string>SocialGraph/Node.pde</string>
-		<string>SocialGraph/shower.pde</string>
+		<string>SocialGraph/test3.rb</string>
+		<string>SocialGraph/test.rb</string>
+		<string>SocialGraph/test2.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
