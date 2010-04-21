@@ -17,6 +17,9 @@ t = TCPSocket.new('localhost', 5204)
   s = "add_node #{peers[0]} #{nodes[0]}"
   puts s
   t.puts s
+  if rand(10) % 2 == 0
+    t.puts "set_trusted #{peers[0]} #{nodes[0]}"
+  end
 
   peers.shuffle!
   nodes.shuffle!
