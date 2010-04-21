@@ -127,7 +127,7 @@ float fr(float m1, float m2, float z){
 void addNode(float width, float height, float mass, String id) {
   // first check to make sure that the node id is unique
   for (Iterator it = ns.iterator(); it.hasNext();) {
-    if (((Node)it.next()).id.equals(id)) {
+    if (((Node)it.next()).node_id.equals(id)) {
       return;
     }
   }

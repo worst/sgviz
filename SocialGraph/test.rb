@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'socket'
 
 t = TCPSocket.new('localhost', 5204)
