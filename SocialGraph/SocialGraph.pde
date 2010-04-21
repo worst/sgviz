@@ -105,13 +105,13 @@ void prepare(){
   case RANDOM: 
     nn=150; 
     k=sqrt(min(width,height)/nn)*.05; 
-    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),4, "" + (ns.size()+1))); 
+    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),4, "" + (ns.size()+1), "P1")); 
     break; 
   case POLYNET: 
     nn = 5; 
     k=sqrt(width*height/nn)*.5; 
     k2=k*.2;
-    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),10, "" + (ns.size()+1))); 
+    ns.add(new Node(random(width/2-width/8,width/2+width/8),random(height/2-height/8,height/2+height/8),10, "" + (ns.size()+1), "P1")); 
     break; 
   }   
   curn=0; 
@@ -125,16 +125,17 @@ float fr(float m1, float m2, float z){
   //return 20*(m1*m2)/pow(z,2); 
 }
 
-void addNode(float width, float height, float mass, String id) {
+void addNode(float width, float height, float mass, String id, String peer_id) {
   // first check to make sure that the node id is unique
   for (Iterator it = ns.iterator(); it.hasNext();) {
-    if (((Node)it.next()).node_id.equals(id)) {
+    Node n = (Node)it.next();
+    if (n.peer_id.equals(peer_id) && n.node_id.equals(id)) {
       return;
     }
   }
   float prob = random(1); 
   Node newn = null; 
-  newn = new Node(random(width), random(height), mass, id);           
+  newn = new Node(random(width), random(height), mass, id, peer_id);           
   ns.add(newn); 
  
   k=sqrt(width*height/ns.size())*.5; 
@@ -142,7 +143,7 @@ void addNode(float width, float height, float mass, String id) {
  
 }
 
-void addEdge(String from_id, String to_id, String tag) {
+void addEdge(String peer_id, String from_id, String to_id, String tag) {
 
   // no self edges
   if (from_id.equals(to_id))
@@ -153,8 +154,8 @@ void addEdge(String from_id, String to_id, String tag) {
     Edge e = 
   }*/
 
-  Node from = findNode(from_id);
-  Node to = findNode(to_id);
+  Node from = findNode(peer_id, from_id);
+  Node to = findNode(peer_id, to_id);
   
   
   /*for(Iterator it = ns.iterator(); it.hasNext();) {
@@ -205,11 +206,11 @@ void addEdge(String from_id, String to_id, String tag) {
    }
 }*/
 
-Node findNode(String id) {
+Node findNode(String peer_id, String id) {
   for(Iterator it = ns.iterator(); it.hasNext();) {
     Node n = (Node)it.next();
     
-    if (n.node_id.equals(id))
+    if (n.node_id.equals(id) && n.peer_id.equals(peer_id))
       return n;
   }
   
@@ -292,7 +293,7 @@ void draw(){
     //    }   
     //    break; 
     case POLYNET: 
-      addNode(width, height, 40, "" + (ns.size() + 1));
+      addNode(width, height, 40, "" + (ns.size() + 1), "P1");
       //linkAllNodes();
 //      float prob=random(1); 
 //                newn=new Node(random(width),random(height),10, ns.size() + 1);           
@@ -425,9 +426,9 @@ void draw(){
               println("msg[" + ii + "] = " + int(a[ii]));
             }*/
 
-      String r_addNode = "add_node ([a-zA-Z0-9_-]+)";
-      String r_addEdge = "add_edge ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+)";
-      String r_updateEdge = "update_edge ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
+      String r_addNode = "add_node ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+)";
+      String r_addEdge = "add_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+)";
+      String r_updateEdge = "update_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
       
       Pattern p_addNode = Pattern.compile(r_addNode);
       Pattern p_addEdge = Pattern.compile(r_addEdge);
@@ -441,10 +442,12 @@ void draw(){
         Matcher m = p_addNode.matcher(msg);
 
         m.find();
-        String node_id = m.group(1);
+        String peer_id = m.group(1);
+        String node_id = m.group(2);
+        println("peer_id = " + peer_id);
         println("node_id = " + node_id);
         
-        addNode(width, height, 20, node_id);
+        addNode(width, height, 20, node_id, peer_id);
       }
       else if (Pattern.matches(r_addEdge, msg)) {
         
@@ -453,15 +456,17 @@ void draw(){
         Matcher m = p_addEdge.matcher(msg);
         
         m.find();
-        String from_id = m.group(1);
-        String to_id = m.group(2);
-        String tag = m.group(3);
+        String peer_id = m.group(1);
+        String from_id = m.group(2);
+        String to_id = m.group(3);
+        String tag = m.group(4);
         
+        println("peer_id = " + peer_id);
         println("from_id = " + from_id);
         println("to_id = " + to_id);
         println("tag = " + tag);
         
-        addEdge(from_id, to_id, tag);
+        addEdge(peer_id, from_id, to_id, tag);
       }
       else if (Pattern.matches(r_updateEdge, msg)) {
         
@@ -470,20 +475,24 @@ void draw(){
         Matcher m = p_updateEdge.matcher(msg);
         
         m.find();
-        String from_id = m.group(1);
-        String to_id = m.group(2);
-        String tag = m.group(3);
-        float weight = Float.parseFloat(m.group(4));
+        String peer_id = m.group(1);
+        String from_id = m.group(2);
+        String to_id = m.group(3);
+        String tag = m.group(4);
+        float weight = Float.parseFloat(m.group(5));
         
+        println("peer_id = " + peer_id);
         println("from_id = " + from_id);
         println("to_id = " + to_id);
         println("tag = " + tag);
         println("weight = " + weight);
         
-        Arc e = findEdge(findNode(from_id), findNode(to_id), tag);
+        Arc e = findEdge(findNode(peer_id, from_id), findNode(peer_id, to_id), tag);
         if (e != null)
           updateEdge(e, weight);
         
+      } else {
+        println("NO MATCHING COMMAND FOUND");
       }
     }
   }

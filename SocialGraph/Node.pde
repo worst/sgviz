@@ -8,6 +8,7 @@ class Node{
   boolean trail; 
   boolean ball;
   String node_id = null;
+  String peer_id = null;
   boolean needsUpdate = false;
   color highlightStart = #FFFF00;
   color lastUpdateColor = #FFFF00;
@@ -15,7 +16,7 @@ class Node{
   /*color highlightStart = #FFFF00;
     color lastUpdateColor = null;*/
   
-  Node(float _x, float _y,float _mass, String _node_id){ 
+  Node(float _x, float _y,float _mass, String _node_id, String _peer_id){ 
     //println("_node_id = " + _node_id);
     pos=new Vector2D(_x,_y); 
     disp=new Vector2D(); 
@@ -28,6 +29,7 @@ class Node{
     ball=true; 
     trail=true;
     node_id = _node_id;
+    peer_id = _peer_id;
    //println("node_id = " + node_id); 
   } 
   void incrMass(float nm){ 
