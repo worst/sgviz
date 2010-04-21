@@ -22,6 +22,7 @@ boolean renderTrail=true;
 boolean renderArcs=true; 
 boolean mouseAttract=false; 
 boolean centerAttract = false;
+boolean quadrantCenter = true;
 boolean mouseRepulse=false; 
 boolean renderBalls=true; 
 
@@ -37,7 +38,9 @@ int curn,nn;
 float curMass; 
 static final int RANDOM=0; 
 static final int POLYNET=1;
-static final int FREE = 2; 
+static final int FREE = 2;
+String peers[] = {null, null, null, null};
+/*color peer_colors[] = {new color(#FF3300), new color(#00CCCC), new color(#9966FF), new color(#FF00FF)};*/
 int im;
 
 // so used to _ instead of camel case :(
@@ -134,7 +137,37 @@ void addNode(float width, float height, float mass, String id, String peer_id) {
     }
   }
   float prob = random(1); 
-  Node newn = null; 
+
+  // check to see if we already know about this peer...
+  // if not, set it up...
+  // fuck this is a hack i should probably be using an arraylist...
+  println("Searching for a known or unused quadrant...");
+  boolean found_peer = false;
+  for (int i = 0; i < peers.length; i++) {
+    // do we already know about this peer?
+    // do we have empty room for the peer?
+    if (peers[i] == null) {
+      peers[i] = peer_id;
+      found_peer = true;
+      println("Found unused quadrant");
+      break;
+    }
+    
+    if (peers[i].equals(peer_id)) {
+      found_peer = true;
+      println("Found known quadrant");
+      break;
+    }
+    
+    
+  }
+  
+  if (!found_peer) {
+    println("UNABLE TO FIND A SUITABLE PEER TO SEGREGATE THIS NODE TO!!!");
+    return;
+  }
+  
+  Node newn = null;
   newn = new Node(random(width), random(height), mass, id, peer_id);           
   ns.add(newn); 
  
@@ -368,6 +401,50 @@ void draw(){
       if (delta.norm()<curMass+u.mass+100){ 
         u.disp.addSelf( delta.versor().mult( fr(u.mass,curMass,delta.norm()) ) ); 
       }   
+    }
+    
+    if (quadrantCenter) {
+      String peer = u.peer_id;
+      int quadrant = -1;
+      for (int i = 0; i < peers.length; i++) {
+        if (peers[i].equals(peer)) {
+          quadrant = i;
+          break;
+        }
+      }
+      
+      if (quadrant < 0) {
+        println("Tried to center node " + u.node_id + " on peer " + u.peer_id + " but can't find the correct quadrant!");
+        break;
+      } else {
+        Vector2D quadPos = null; //=new Vector2D(width/2,height/2);   
+
+        
+        // wow, this is terrible :(
+        // an attempt is made to have these follow unit circle...
+        // probably should be clockwise not counter clockwise, but whatever
+        switch (quadrant) {
+          case 0:
+            quadPos = new Vector2D((float)width * 3.0/4.0, (float)height * 1.0/4.0);
+            break;
+          case 1:
+            quadPos = new Vector2D((float)width * 1.0/4.0 , (float)height * 1.0/4.0);
+            break;
+          case 2:
+            quadPos = new Vector2D((float)width * 1.0/4.0 , (float)height * 3.0/4.0);
+            break;
+          case 3:
+            quadPos = new Vector2D((float)width * 3.0/4.0 , (float)height * 3.0/4.0);
+            break;
+        }
+        Vector2D delta = u.pos.sub(quadPos); 
+        if (delta.norm()!=0){ 
+          u.disp.subSelf( delta.versor().mult( fa(u.mass,curMass,delta.norm()) ) ); 
+          stroke(0,0,0,20); 
+          //line(u.pos.x,u.pos.y,mouseX,mouseY); 
+          noStroke(); 
+        }
+      }
     } 
     u.update();    
     u.costrain(0,width,0,height); 
