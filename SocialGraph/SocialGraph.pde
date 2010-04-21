@@ -125,14 +125,19 @@ float fr(float m1, float m2, float z){
 }
 
 void addNode(float width, float height, float mass, String id) {
-
- float prob = random(1); 
- Node newn = null; 
- newn = new Node(random(width), random(height), mass, id);           
- ns.add(newn); 
+  // first check to make sure that the node id is unique
+  for (Iterator it = ns.iterator(); it.hasNext();) {
+    if (((Node)it.next()).id.equals(id)) {
+      return;
+    }
+  }
+  float prob = random(1); 
+  Node newn = null; 
+  newn = new Node(random(width), random(height), mass, id);           
+  ns.add(newn); 
  
- k=sqrt(width*height/ns.size())*.5; 
- k2=k*.2;
+  k=sqrt(width*height/ns.size())*.5; 
+  k2=k*.2;
  
 }
 
