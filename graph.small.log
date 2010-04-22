@@ -219,3 +219,98 @@
 2010-04-21 13:56:53,427:initialize 306:add_edge 306 248 school 0.1
 2010-04-21 13:56:53,428:initialize 156:add_edge 156 71 school 0.1
 2010-04-21 13:56:53,429:initialize 156:add_node 152
+2010-04-21 13:57:20,453:top_friends 10791:visit 0 156
+2010-04-21 13:57:20,453:initialize 0:update_edge 0 91 school 0.18
+2010-04-21 13:57:20,453:top_friends 10791:visit 0 228
+2010-04-21 13:57:20,454:top_friends 10791:visit 0 128
+2010-04-21 13:57:20,453:initialize 0:update_edge 0 55 school 0.12
+2010-04-21 13:57:20,454:top_friends 10791:visit 0 63
+2010-04-21 13:57:20,454:top_friends 10791:visit 0 177
+2010-04-21 13:57:20,454:initialize 0:update_edge 0 12 school 0.1
+2010-04-21 13:57:20,454:initialize 0:update_edge 0 8 school 0.12
+2010-04-21 13:57:20,454:top_friends 10791:visit 0 182
+2010-04-21 13:57:20,454:initialize 0:update_edge 0 182 school 0.13
+2010-04-21 13:57:20,454:initialize 0:update_edge 0 14 school 0.1
+2010-04-21 13:57:20,454:top_friends 10791:visit 0 27
+2010-04-21 13:57:20,454:initialize 0:update_edge 0 1 school 1.0
+2010-04-21 13:57:20,455:initialize 0:update_edge 0 228 school 0.19
+2010-04-21 13:57:20,454:top_friends 10791:visit 0 49
+2010-04-21 13:57:20,455:initialize 0:update_edge 0 146 school 0.14
+2010-04-21 13:57:20,455:initialize 0:update_edge 0 41 school 0.11
+2010-04-21 13:57:20,455:top_friends 10791:visit 0 41
+2010-04-21 13:57:20,455:initialize 0:update_edge 0 177 school 0.14
+2010-04-21 13:57:20,455:initialize 0:update_edge 0 63 school 0.1
+2010-04-21 13:57:20,455:top_friends 10791:visit 0 1
+2010-04-21 13:57:20,455:initialize 0:update_edge 0 70 school 0.1
+2010-04-21 13:57:20,455:initialize 0:update_edge 0 156 school 0.12
+2010-04-21 13:57:20,455:top_friends 10791:visit 0 2
+2010-04-21 13:57:20,456:initialize 0:update_edge 0 27 school 0.1
+2010-04-21 13:57:20,456:initialize 0:update_edge 0 9 school 0.1
+2010-04-21 13:57:20,456:top_friends 10791:visit 0 4
+2010-04-21 13:57:20,456:initialize 0:update_edge 0 2 school 0.1
+2010-04-21 13:57:20,456:initialize 0:update_edge 0 4 school 0.1
+2010-04-21 13:57:20,456:top_friends 10791:visit 0 9
+2010-04-21 13:57:20,456:initialize 0:update_edge 0 49 school 0.12
+2010-04-21 13:57:20,456:initialize 0:update_edge 0 52 school 0.1
+2010-04-21 13:57:20,456:top_friends 10791:visit 0 8
+2010-04-21 13:57:20,456:initialize 0:update_edge 0 35 school 0.12
+2010-04-21 13:57:20,457:initialize 0:update_edge 0 10 school 0.1
+2010-04-21 13:57:20,457:top_friends 10791:visit 0 146
+2010-04-21 13:57:20,459:top_friends 10791:visit 0 70
+2010-04-21 13:57:20,459:top_friends 10791:visit 0 91
+2010-04-21 13:57:20,459:top_friends 10791:visit 0 10
+2010-04-21 13:57:20,459:top_friends 10791:visit 0 12
+2010-04-21 13:57:20,460:top_friends 10791:visit 0 14
+2010-04-21 13:57:20,460:top_friends 10791:visit 0 55
+2010-04-21 13:57:20,460:top_friends 10791:visit 0 35
+2010-04-21 13:57:20,453:initialize 798:add_edge 798 617 school 0.1
+2010-04-21 13:57:20,460:top_friends 10791:visit 0 52
+2010-04-21 13:57:23,439:top_friends 61116:start_traversal 0
+2010-04-21 13:57:23,439:top_friends 61116:visit 0 156
+2010-04-21 13:57:23,439:top_friends 61116:visit 0 228
+2010-04-21 13:57:23,439:top_friends 61116:visit 0 128
+2010-04-21 13:57:23,439:top_friends 61116:visit 0 63
+2010-04-21 13:57:23,439:top_friends 61116:visit 0 177
+2010-04-21 13:57:23,439:top_friends 61116:visit 0 182
+2010-04-21 13:57:23,439:top_friends 61116:visit 0 27
+2010-04-21 13:57:23,439:top_friends 61116:visit 0 49
+2010-04-21 13:57:23,439:top_friends 61116:visit 0 41
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 1
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 2
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 4
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 9
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 8
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 146
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 70
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 91
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 10
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 12
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 14
+2010-04-21 13:57:23,440:top_friends 61116:visit 0 55
+2010-04-21 13:57:23,441:top_friends 61116:visit 0 35
+2010-04-21 13:57:23,441:top_friends 61116:visit 0 52
+2010-04-21 13:57:23,442:neighborhood 55286:start_traversal 958
+2010-04-21 13:57:23,442:neighborhood 55286:visit 958 394
+2010-04-21 13:57:23,442:neighborhood 55286:traverse_remote 958 394
+2010-04-21 13:57:23,443:SocS_secondary 2:start_traversal 80
+2010-04-21 13:57:23,444:SocS 55285:start_traversal 234
+2010-04-21 13:57:23,445:SocS_secondary 7:start_traversal 115
+2010-04-21 13:57:23,445:neighborhood_secondary 11:start_traversal 85
+2010-04-21 13:57:23,445:neighborhood_secondary 11:visit 85 440
+2010-04-21 13:57:23,445:neighborhood_secondary 11:visit 85 140
+2010-04-21 13:57:23,446:top_friends 31534:start_traversal 9
+2010-04-21 13:57:23,446:neighborhood_secondary 11:visit 85 366
+2010-04-21 13:57:23,446:top_friends 31534:visit 9 16
+2010-04-21 13:57:23,446:neighborhood_secondary 11:visit 85 39
+2010-04-21 13:57:23,446:top_friends 31534:visit 9 32
+2010-04-21 13:57:23,447:neighborhood_secondary 11:visit 85 193
+2010-04-21 13:57:23,447:top_friends 31534:visit 9 6
+2010-04-21 13:57:23,447:neighborhood_secondary 11:visit 85 323
+2010-04-21 13:57:23,447:top_friends 31534:visit 9 29
+2010-04-21 13:57:23,447:neighborhood_secondary 11:visit 85 91
+2010-04-21 13:57:23,447:top_friends 31534:visit 9 120
+2010-04-21 13:57:23,447:neighborhood_secondary 11:visit 85 100
+2010-04-21 13:57:23,447:top_friends 31534:visit 9 0
+2010-04-21 13:57:23,448:neighborhood_secondary 11:visit 85 167
+2010-04-21 13:57:23,448:top_friends 31534:visit 9 3
+2010-04-21 13:57:23,448:neighborhood_secondary 11:visit 85 225

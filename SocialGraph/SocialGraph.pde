@@ -301,7 +301,35 @@ Arc findEdge(Node from, Node to, String tag) {
   return null;
 }
 
-
+ArrayList findEdges(Node from, Node to) {
+  ArrayList ret = new ArrayList();
+  for (Iterator it = as.iterator(); it.hasNext();) {
+    Arc e = (Arc)it;
+    if (e.v.equals(from) && e.u.equals(to)) {
+      ret.add(e);
+    }
+  }
+  
+  return ret;
+}
+void visit(Node from, Node to) {
+  ArrayList edges = findEdges(from, to);
+  Collections.sort(edges, new Comparator() {
+    public int compare(Object obj1, Object obj2) {
+      Arc e1 = (Arc)obj1;
+      Arc e2 = (Arc)obj2;
+      if (e1.weight < e2.weight) {
+        return -1;
+      } else if (e1.weight > e2.weight) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  });
+  
+  flashEdge((Arc)edges.get(edges.size() - 1));
+}
 void flashEdge(Arc e) {
   e.lastUpdateColor = e.highlightStart;
   e.updateTicksRemaining += frameRate*2;
@@ -584,11 +612,13 @@ void draw(){
       String r_addEdge = "add_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
       String r_updateEdge = "update_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
       String r_setTrusted = "set_trusted ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+)";
+      String r_visit = "visit ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_\\.-]+)";
       
       Pattern p_addNode = Pattern.compile(r_addNode);
       Pattern p_addEdge = Pattern.compile(r_addEdge);
       Pattern p_updateEdge = Pattern.compile(r_updateEdge);
       Pattern p_setTrusted = Pattern.compile(r_setTrusted);
+      Pattern p_visit = Pattern.compile(r_visit);
       
       // regexes in java are pretty crappy... or i'm doing something wrong
       if (Pattern.matches(r_addNode, msg)) {
@@ -664,6 +694,24 @@ void draw(){
          if (n != null) {
            setTrusted(n);
          }
+      } else if (Pattern.matches(r_visit, msg)) {
+        println("Visit request: [" + msg + "]");
+        
+        Matcher m = p_visit.matcher(msg);
+        
+        m.find();
+        
+        String peer_id = m.group(1);
+        String from_id = m.group(2);
+        String to_id = m.group(3);
+        
+        Node from = findNode(peer_id, from_id);
+        Node to = findNode(peer_id, to_id);
+        
+        if (from != null && to != null) {
+          visit(from, to);
+        }
+        
       } else {
         println("NO MATCHING COMMAND FOUND");
       }

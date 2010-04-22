@@ -72,10 +72,16 @@ File.open(filename) do |log|
       tag = match.captures[3]
       weight = match.captures[4].to_f
       puts "*"*20
+      puts "Updating edge"
       t.puts "update_edge #{peer_id} #{from_node} #{to_node} #{tag} #{weight}"
       puts "*"*20
     elsif !(match = r_visit.match(line)).nil?
-      
+      from_node = match.captures[0]
+      to_node = match.captures[1]
+      puts "*"*20
+      puts "Visiting node"
+      t.puts "visit #{peer_id} #{from_node} #{to_node}"
+      puts "*"*20
     end
   end
 end
