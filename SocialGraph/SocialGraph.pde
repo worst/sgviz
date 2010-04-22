@@ -210,7 +210,7 @@ void addNode(float width, float height, float mass, String id, String peer_id) {
  
 }
 
-void addEdge(String peer_id, String from_id, String to_id, String tag) {
+void addEdge(String peer_id, String from_id, String to_id, String tag, float weight) {
 
   // no self edges
   if (from_id.equals(to_id))
@@ -254,6 +254,7 @@ void addEdge(String peer_id, String from_id, String to_id, String tag) {
       return;
   }
   Arc e = new Arc(from, to, tag);
+  e.weight = weight;
   as.add(e);
   flashEdge(e);
   
@@ -580,7 +581,7 @@ void draw(){
             }*/
 
       String r_addNode = "add_node ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+)";
-      String r_addEdge = "add_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+)";
+      String r_addEdge = "add_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
       String r_updateEdge = "update_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
       String r_setTrusted = "set_trusted ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+)";
       
@@ -615,13 +616,15 @@ void draw(){
         String from_id = m.group(2);
         String to_id = m.group(3);
         String tag = m.group(4);
+        float weight = Float.parseFloat(m.group(5));
         
         println("peer_id = " + peer_id);
         println("from_id = " + from_id);
         println("to_id = " + to_id);
         println("tag = " + tag);
+        println("weight = " + weight);
         
-        addEdge(peer_id, from_id, to_id, tag);
+        addEdge(peer_id, from_id, to_id, tag, weight);
       }
       else if (Pattern.matches(r_updateEdge, msg)) {
         

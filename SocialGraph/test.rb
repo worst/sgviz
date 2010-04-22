@@ -24,7 +24,7 @@ end
   peers.shuffle!
   nodes.shuffle!
   tags.shuffle!
-  s = "add_edge #{peers[0]} #{nodes[0]} #{nodes[1]} #{tags[0]}"
+  s = "add_edge #{peers[0]} #{nodes[0]} #{nodes[1]} #{tags[0]} #{rand(5) + 1}.0"
   puts s
   t.puts s
   

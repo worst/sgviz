@@ -54,8 +54,8 @@ f.lines.each do |l|
     puts "tag: #{tag}"
     puts "weight: #{weight}"
     
-    t.puts "add_edge #{peer_id} #{from_node} #{to_node} #{tag}"
-    t.puts "update_edge #{peer_id} #{from_node} #{to_node} #{tag} #{weight}"
+    t.puts "add_edge #{peer_id} #{from_node} #{to_node} #{tag} #{rand(5) + 1}.0"
+    # t.puts "update_edge #{peer_id} #{from_node} #{to_node} #{tag} #{weight}"
     
   end
   
