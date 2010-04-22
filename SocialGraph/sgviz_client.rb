@@ -15,6 +15,7 @@ File.open(filename) do |log|
   r_add_node = /:initialize (\w+):add_node (\w+)/
   r_add_edge = /:initialize (\w+):add_edge (\w+) (\w+) (\w+) (\d+.\d+)/
   r_update_edge = /:initialize (\w+):update_edge (\w+) (\w+) (\w+) (\d+.\d+)/
+  r_visit = /:visit (\w+) (\w+)/
   
   t = STDOUT
   if !send_to.nil?
@@ -62,7 +63,7 @@ File.open(filename) do |log|
       puts "tag: #{tag}"
       puts "weight: #{weight}"
 
-      t.puts "add_edge #{peer_id} #{from_node} #{to_node} #{tag}"
+      t.puts "add_edge #{peer_id} #{from_node} #{to_node} #{tag} #{weight}"
       # t.puts "update_edge #{peer_id} #{from_node} #{to_node} #{tag} #{weight}"
       puts "*"*20
     elsif !(match = r_update_edge.match(line)).nil?
@@ -73,6 +74,8 @@ File.open(filename) do |log|
       puts "*"*20
       t.puts "update_edge #{peer_id} #{from_node} #{to_node} #{tag} #{weight}"
       puts "*"*20
+    elsif !(match = r_visit.match(line)).nil?
+      
     end
   end
 end
