@@ -16,6 +16,9 @@ File.open(filename) do |log|
   r_add_edge = /:initialize (\w+):add_edge (\w+) (\w+) (\w+) (\d+.\d+)/
   r_update_edge = /:initialize (\w+):update_edge (\w+) (\w+) (\w+) (\d+.\d+)/
   r_visit = /:visit (\w+) (\w+)/
+  r_add_node2 = /:add_node (\w+)/
+  r_add_edge2 = /:add_edge (\w+) (\w+) (\w+) (\d+.\d+)/
+  r_update_edge2 = /:update_edge (\w+) (\w+) (\w+) (\d+.\d+)/
   
   t = STDOUT
   if !send_to.nil?
@@ -71,6 +74,7 @@ File.open(filename) do |log|
       to_node = match.captures[2]
       tag = match.captures[3]
       weight = match.captures[4].to_f
+      
       puts "*"*20
       puts "Updating edge"
       t.puts "update_edge #{peer_id} #{from_node} #{to_node} #{tag} #{weight}"
@@ -78,9 +82,37 @@ File.open(filename) do |log|
     elsif !(match = r_visit.match(line)).nil?
       from_node = match.captures[0]
       to_node = match.captures[1]
+      
       puts "*"*20
       puts "Visiting node"
       t.puts "visit #{peer_id} #{from_node} #{to_node}"
+      puts "*"*20
+    elsif !(match = r_add_node2.match(line)).nil?
+      from_node = match.captures[0]
+      
+      puts "*"*20
+      puts "Adding node (non initializer)"
+      t.puts "add_node #{peer_id} #{from_node}"
+      puts "*"*20
+    elsif !(match = r_add_edge2.match(line)).nil?
+      from_node = match.captures[0]
+      to_node = match.captures[1]
+      tag = match.captures[2]
+      weight = match.captures[3].to_f
+      
+      puts "*"*20
+      puts "Adding edge (non initializer)"
+      t.puts "add_edge #{peer_id} #{from_node} #{to_node} #{tag} #{weight}"
+      puts "*"*20
+    elsif !(match = r_update_edge2.match(line)).nil?
+      from_node = match.captures[0]
+      to_node = match.captures[1]
+      tag = match.captures[2]
+      weight = match.captures[3].to_f
+      
+      puts "*"*20
+      puts "Updating edge (non initializer)"
+      t.puts "update_edge #{peer_id} #{from_node} #{to_node} #{tag} #{weight}"
       puts "*"*20
     end
   end
