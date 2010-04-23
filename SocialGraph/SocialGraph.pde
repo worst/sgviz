@@ -200,7 +200,27 @@ void addNode(float width, float height, float mass, String id, String peer_id) {
   
   Node newn = null;
   /*float x, y;*/
-  newn = new Node(random(width), random(height), mass, id, peer_id);           
+  float x = width;
+  float y = height;
+  switch (peer) {
+    case 0:
+      x = random(width/2.0, width);
+      y = random(0, height/2.0);
+      break;
+    case 1:
+      x = random(0, width/2.0);
+      y = random(0, height/2.0);
+      break;
+    case 2:
+      x = random(0, width/2.0);
+      y = random(height/2.0, height);
+      break;
+    case 3:
+      x = random(width/2.0, width);
+      y = random(height/2.0, height);
+      break;
+  }
+  newn = new Node(x, y, mass, id, peer_id);           
   ns.add(newn);
   //newn.mycolor = peer_colors[peer];
   newn.mycolor = color(240,240,240);
