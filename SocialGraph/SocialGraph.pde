@@ -302,17 +302,19 @@ Arc findEdge(Node from, Node to, String tag) {
 }
 
 ArrayList findEdges(Node from, Node to) {
+  println("in findEdges");
   ArrayList ret = new ArrayList();
   for (Iterator it = as.iterator(); it.hasNext();) {
-    Arc e = (Arc)it;
+    Arc e = (Arc)it.next()x;
     if (e.v.equals(from) && e.u.equals(to)) {
       ret.add(e);
     }
   }
-  
+  println("Returning found edges");
   return ret;
 }
 void visit(Node from, Node to) {
+  println("in visit()");
   ArrayList edges = findEdges(from, to);
   Collections.sort(edges, new Comparator() {
     public int compare(Object obj1, Object obj2) {
@@ -328,7 +330,10 @@ void visit(Node from, Node to) {
     }
   });
   
+  println("done sorting edges");
+  
   flashEdge((Arc)edges.get(edges.size() - 1));
+  print("done flashing edges");
 }
 void flashEdge(Arc e) {
   e.lastUpdateColor = e.highlightStart;
@@ -612,7 +617,7 @@ void draw(){
       String r_addEdge = "add_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
       String r_updateEdge = "update_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
       String r_setTrusted = "set_trusted ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+)";
-      String r_visit = "visit ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_\\.-]+)";
+      String r_visit = "visit ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+)";
       
       Pattern p_addNode = Pattern.compile(r_addNode);
       Pattern p_addEdge = Pattern.compile(r_addEdge);
@@ -696,6 +701,7 @@ void draw(){
          }
       } else if (Pattern.matches(r_visit, msg)) {
         println("Visit request: [" + msg + "]");
+        
         
         Matcher m = p_visit.matcher(msg);
         
