@@ -20,6 +20,7 @@ File.open(filename) do |log|
   r_add_edge2 = /:add_edge (\w+) (\w+) (\w+) (\d+.\d+)/
   r_update_edge2 = /:update_edge (\w+) (\w+) (\w+) (\d+.\d+)/
   
+  
   t = STDOUT
   if !send_to.nil?
     t = TCPSocket.new(send_to, 5204)

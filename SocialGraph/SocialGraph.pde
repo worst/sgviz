@@ -294,6 +294,19 @@ void addEdge(String peer_id, String from_id, String to_id, String tag, float wei
    }
 }*/
 
+int findQuadrant(Node u) {
+  String peer_id = u.peer_id;
+  int peer = -1;
+  for (int i = 0; i < peers.length; i++) {
+    if (peers[i].equals(peer_id)) {
+      peer = i;
+      break;
+    }
+  }
+  
+  return peer;
+}
+
 Node findNode(String peer_id, String id) {
   for(Iterator it = ns.iterator(); it.hasNext();) {
     Node n = (Node)it.next();
@@ -534,8 +547,43 @@ void draw(){
         }
       }
     } 
-    u.update();    
-    u.costrain(0,width,0,height); 
+    u.update();
+    int quadrant = findQuadrant(u);
+    if (quadrant < 0) {    
+      u.costrain(0,width,0,height); 
+    } else {
+      float x0 = 0.0;
+      float x1 = 0.0;
+      float y0 = 0.0;
+      float y1 = 0.0;
+      switch (quadrant) {
+        case 0:
+          x0 = width/2.0 + u.mass/2.0;
+          x1 = width - u.mass/2.0;
+          y0 = 0 + u.mass/2.0;
+          y1 = height/2.0 - u.mass/2.0;
+          break;
+        case 1:
+          x0 = 0.0 + u.mass/2.0;
+          x1 = width/2.0 - u.mass/2.0;
+          y0 = 0 + u.mass/2.0;
+          y1 = height/2.0 - u.mass/2.0;
+          break;
+        case 2:
+          x0 = 0.0 + u.mass/2.0;
+          x1 = width/2.0 - u.mass/2.0;
+          y0 = u.mass/2.0 + u.mass/2.0;
+          y1 = height - u.mass/2.0;
+          break;
+        case 3:
+          x0 = width/2.0 + u.mass/2.0;
+          x1 = width - u.mass/2.0;
+          y0 = u.mass/2.0 + u.mass/2.0;
+          y1 = height - u.mass/2.0;
+          break;
+      }
+      u.costrain(x0, x1, y0, y1);
+    }
   } 
   if (renderArcs) 
     for(Iterator it=as.iterator();it.hasNext();){ 
