@@ -558,28 +558,28 @@ void draw(){
       float y1 = 0.0;
       switch (quadrant) {
         case 0:
-          x0 = width/2.0 + u.mass/2.0;
-          x1 = width - u.mass/2.0;
-          y0 = 0 + u.mass/2.0;
-          y1 = height/2.0 - u.mass/2.0;
+          x0 = width/2.0 + u.mass;
+          x1 = width - u.mass;
+          y0 = 0 + u.mass;
+          y1 = height/2.0 - u.mass;
           break;
         case 1:
-          x0 = 0.0 + u.mass/2.0;
-          x1 = width/2.0 - u.mass/2.0;
-          y0 = 0 + u.mass/2.0;
-          y1 = height/2.0 - u.mass/2.0;
+          x0 = 0.0 + u.mass;
+          x1 = width/2.0 - u.mass;
+          y0 = 0 + u.mass;
+          y1 = height/2.0 - u.mass;
           break;
         case 2:
-          x0 = 0.0 + u.mass/2.0;
-          x1 = width/2.0 - u.mass/2.0;
-          y0 = u.mass/2.0 + u.mass/2.0;
-          y1 = height - u.mass/2.0;
+          x0 = 0.0 + u.mass;
+          x1 = width/2.0 - u.mass;
+          y0 = height/2.0 + u.mass;
+          y1 = height - u.mass;
           break;
         case 3:
-          x0 = width/2.0 + u.mass/2.0;
-          x1 = width - u.mass/2.0;
-          y0 = u.mass/2.0 + u.mass/2.0;
-          y1 = height - u.mass/2.0;
+          x0 = width/2.0 + u.mass;
+          x1 = width - u.mass;
+          y0 = height/2.0 + u.mass;
+          y1 = height - u.mass;
           break;
       }
       u.costrain(x0, x1, y0, y1);
