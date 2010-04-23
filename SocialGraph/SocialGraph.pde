@@ -538,12 +538,18 @@ void draw(){
             quadPos = new Vector2D((float)width * 3.0/4.0 , (float)height * 3.0/4.0);
             break;
         }
-        Vector2D delta = u.pos.sub(quadPos); 
-        if (delta.norm() < 3.0){ 
+        Vector2D delta = u.pos.sub(quadPos);
+        println("node: " + u.node_id + ": delta.norm() = " + delta.norm());
+        if (delta.norm() > 0.5) {
           u.disp.subSelf( delta.versor().mult( fa(u.mass,curMass,delta.norm()) ) ); 
           stroke(0,0,0,20); 
           //line(u.pos.x,u.pos.y,mouseX,mouseY); 
           noStroke(); 
+        } else {
+          println("shouldn't be moving");
+          u.disp.clear();
+          /*u.disp.x = 0.0;
+                    u.disp.y = u.pos.y;*/
         }
       }
     } 
