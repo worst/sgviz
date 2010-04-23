@@ -539,7 +539,7 @@ void draw(){
             break;
         }
         Vector2D delta = u.pos.sub(quadPos); 
-        if (delta.norm()!=0){ 
+        if (delta.norm() < 3.0){ 
           u.disp.subSelf( delta.versor().mult( fa(u.mass,curMass,delta.norm()) ) ); 
           stroke(0,0,0,20); 
           //line(u.pos.x,u.pos.y,mouseX,mouseY); 
@@ -719,7 +719,7 @@ void draw(){
         String from_id = m.group(2);
         String to_id = m.group(3);
         String tag = m.group(4);
-        float weight = Float.parseFloat(m.group(5));
+        float weight = Float.parseFloat(m.group(5)) * 1.5;
         
         println("peer_id = " + peer_id);
         println("from_id = " + from_id);
@@ -740,7 +740,7 @@ void draw(){
         String from_id = m.group(2);
         String to_id = m.group(3);
         String tag = m.group(4);
-        float weight = Float.parseFloat(m.group(5));
+        float weight = Float.parseFloat(m.group(5)) * 1.5;
         
         println("peer_id = " + peer_id);
         println("from_id = " + from_id);
