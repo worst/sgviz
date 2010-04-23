@@ -305,7 +305,7 @@ ArrayList findEdges(Node from, Node to) {
   println("in findEdges");
   ArrayList ret = new ArrayList();
   for (Iterator it = as.iterator(); it.hasNext();) {
-    Arc e = (Arc)it.next()x;
+    Arc e = (Arc)it.next();
     if (e.v.equals(from) && e.u.equals(to)) {
       ret.add(e);
     }
