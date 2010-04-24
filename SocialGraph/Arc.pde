@@ -37,11 +37,14 @@ class Arc{
       c = #0000FF;
     }     
     
+    // really lame flashing animation.
     if (updateTicksRemaining > 0) {
       lastUpdateColor = blendColor(c, lastUpdateColor, BLEND);
       c = lastUpdateColor;
       updateTicksRemaining--;
       
+      // HACK
+      // This is a terrible way to handle the animation.
       if (updateUQueue.size() > 0) {
        int ticksLeftBeforeUpdate = ((Integer)updateUQueue.remove(0)).intValue();
        if (ticksLeftBeforeUpdate > 1) {

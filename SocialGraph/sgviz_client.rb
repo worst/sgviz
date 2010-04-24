@@ -23,11 +23,13 @@ File.open(filename) do |log|
   
   t = STDOUT
   if !send_to.nil?
+    # It's not that pretty to keep a telnet session open the entire time, but
+    # whatever.
     t = TCPSocket.new(send_to, 5204)
   end
   
   
-  
+  # really want to make the #tail block less convoluted
   # cmds = []
   #   cmds << r_add_node
   #   cmds << r_add_edge

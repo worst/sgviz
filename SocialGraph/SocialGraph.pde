@@ -95,6 +95,7 @@ void setup(){
   sgDataListener = new Server(this, 5204);
 } 
  
+// no mouse interaction
 // void mousePressed(){ 
 //   curMass=0; 
 //   tMass=0; 
@@ -160,18 +161,23 @@ void setTrusted(Node n) {
 }
 
 void addNode(float width, float height, float mass, String id, String peer_id) {
-  // first check to make sure that the node id is unique
+  // first check to make sure that the node is unique for its given peer
   for (Iterator it = ns.iterator(); it.hasNext();) {
     Node n = (Node)it.next();
     if (n.peer_id.equals(peer_id) && n.node_id.equals(id)) {
       return;
     }
   }
-  float prob = random(1); 
+  
+  // this doesn't do anything?
+  //float prob = random(1); 
 
   // check to see if we already know about this peer...
   // if not, set it up...
-  // fuck this is a hack i should probably be using an arraylist...
+  // HACK
+  // i should probably be using an arraylist...
+  // i should also probably not doing this in such a hacktastic manner
+  // it's probably an anti pattern :o
   println("Searching for a known or unused quadrant...");
   boolean found_peer = false;
   int peer = -1;
@@ -191,7 +197,6 @@ void addNode(float width, float height, float mass, String id, String peer_id) {
       break;
     }
     
-    
   }
   
   if (peer < 0) {
@@ -200,9 +205,13 @@ void addNode(float width, float height, float mass, String id, String peer_id) {
   }
   
   Node newn = null;
-  /*float x, y;*/
+
+  // determin nodes entrance as a random location within its peer's quadrant
   float x = width;
   float y = height;
+  
+  // TODO
+  // REFACTOR
   switch (peer) {
     case 0:
       x = random(width/2.0, width);
@@ -221,11 +230,14 @@ void addNode(float width, float height, float mass, String id, String peer_id) {
       y = random(height/2.0, height);
       break;
   }
+  // add the node to screen :)
   newn = new Node(x, y, mass, id, peer_id);           
   ns.add(newn);
-  //newn.mycolor = peer_colors[peer];
+  
+  // start it at grey, we'll leave switching it's color to setTrusted
   newn.mycolor = color(240,240,240);
  
+  // no idea what this does :o
   k=sqrt(width*height/ns.size())*.5; 
   k2=k*.2;
  
@@ -233,31 +245,16 @@ void addNode(float width, float height, float mass, String id, String peer_id) {
 
 void addEdge(String peer_id, String from_id, String to_id, String tag, float weight) {
 
-  // no self edges
+  // no self edges (hurf durf math name?)
+  // this also prevents two nodes with same ideas on different peers from
+  // having an edge between them...
+  // need something more complex to make sure it's not a visualized node
+  // looping back on itself.
   if (from_id.equals(to_id))
     return;
-    
-  // check to make sure an edge between the two nodes doesn't already exist
-  /*for (Iterator it = as.iterator(); it.hasNext();) {
-    Edge e = 
-  }*/
 
   Node from = findNode(peer_id, from_id);
   Node to = findNode(peer_id, to_id);
-  
-  
-  /*for(Iterator it = ns.iterator(); it.hasNext();) {
-     Node n = (Node)it.next();
-     if (from == null && n.node_id.equals(from_id)) {
-       from = n;
-       continue;
-     } else if (to == null && n.node_id.equals(to_id)) {
-       to = n;
-     }
-   
-     if (from != null && to != null)
-       break;
-   }*/
   
   if (from == null) {
     println("ERROR: Could not find from node");
@@ -274,17 +271,14 @@ void addEdge(String peer_id, String from_id, String to_id, String tag, float wei
     if (e.v.equals(from) && e.u.equals(to) && e.tag.equals(tag))
       return;
   }
+  
+  // add the edge
   Arc e = new Arc(from, to, tag);
   e.weight = weight;
   as.add(e);
   flashEdge(e);
   
   println("Number of edges is now: " + as.size());
-  
-  /*for(Iterator it2=ns.iterator();it2.hasNext();){ 
-     Node m=(Node)it2.next();           
-     if (newn==m) continue; 
-     as.add(new Arc(newn,m));*/
 }
 
 /*void linkAllNodes() {
@@ -376,6 +370,9 @@ void flashEdge(Arc e) {
   e.v.lastUpdateColor = e.v.highlightStart;
   e.v.updateTicksRemaining += frameRate;
   
+  
+  // this is a terrible way to ensure that things will sorta synch up.
+  // would be a lot easier if i didn't try to fade.
   e.updateUQueue.add(new Integer(int(frameRate)));
   
 }
@@ -415,30 +412,31 @@ void draw(){
     Node ss=(Node)ns.get(s); 
     Node newn=null; 
     switch(mode){ 
-    // case RANDOM: 
-    //    newn=new Node(nr.pos.x+random(nr.mass,nr.mass+10),nr.pos.y+random(nr.mass,nr.mass+10),4, ns.size()+1); 
-    //    ns.add(newn); 
-    //    as.add(new Arc(newn,nr)); 
-    //    newn.incrMass(2); 
-    //    nr.incrMass(2); 
-    //    if (ns.size()>5 && gen){ 
-    //      as.add(new Arc(newn,ss)); 
-    //      newn.incrMass(2); 
-    //      ss.incrMass(2); 
-    //    }   
-    //    break; 
+      
+    
+    case RANDOM: 
+       newn=new Node(nr.pos.x+random(nr.mass,nr.mass+10),nr.pos.y+random(nr.mass,nr.mass+10),4, ns.size()+1); 
+       ns.add(newn); 
+       as.add(new Arc(newn,nr)); 
+       newn.incrMass(2); 
+       nr.incrMass(2); 
+       if (ns.size()>5 && gen){ 
+         as.add(new Arc(newn,ss)); 
+         newn.incrMass(2); 
+         ss.incrMass(2); 
+       }   
+       break; 
     case POLYNET: 
       addNode(width, height, 40, "" + (ns.size() + 1), "P1");
-      //linkAllNodes();
-//      float prob=random(1); 
-//                newn=new Node(random(width),random(height),10, ns.size() + 1);           
-//                ns.add(newn); 
-//                for(Iterator it2=ns.iterator();it2.hasNext();){ 
-//                  Node m=(Node)it2.next();           
-//                  if (newn==m) continue; 
-//                  as.add(new Arc(newn,m)); 
-//                } 
-//      break; 
+      float prob=random(1); 
+               newn=new Node(random(width),random(height),10, ns.size() + 1);           
+               ns.add(newn); 
+               for(Iterator it2=ns.iterator();it2.hasNext();){ 
+                 Node m=(Node)it2.next();           
+                 if (newn==m) continue; 
+                 as.add(new Arc(newn,m)); 
+               } 
+      break; 
     }     
   } 
   
@@ -679,6 +677,11 @@ void draw(){
   
  // saveFrame("processing_sketch_saveFrame_test-####.png");
  //sgDataListener.write("There are: " + ns.size() + " nodes being visualized...");
+ 
+ // HACK
+ // THIS WHOLE CLIENT/SERVER PORTION OF THE CODE IS PRETTY NASTY
+ // TODO
+ // add some sort of reset command that clears everything and starts over
  Client client = sgDataListener.available();
   if (client != null) {
     String msg = client.readStringUntil(10);
@@ -687,11 +690,6 @@ void draw(){
       println("msg.length() = " + msg.length());
       msg = msg.trim();
       println("msg.length() (post trim)= " + msg.length());
-      /*println("\"addNode\".length = " + "addNode".length());
-            char a[] = msg.toCharArray();
-            for (int ii = 0; ii < msg.length(); ii++) {
-              println("msg[" + ii + "] = " + int(a[ii]));
-            }*/
 
       String r_addNode = "add_node ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+)";
       String r_addEdge = "add_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
@@ -706,6 +704,7 @@ void draw(){
       Pattern p_visit = Pattern.compile(r_visit);
       
       // regexes in java are pretty crappy... or i'm doing something wrong
+      // probably the latter?
       if (Pattern.matches(r_addNode, msg)) {
         
         println("New node requested: [" + msg + "]");

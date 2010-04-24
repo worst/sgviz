@@ -68,6 +68,8 @@ class Node{
       ellipse(pos.x,pos.y,mass*1.5,mass*1.5);
       
       fill(mycolor);
+      
+      // really cheesy mechanism for highlighting things.
       if (updateTicksRemaining > 0) {
         //println("node needs vis update");
         lastUpdateColor = blendColor(mycolor, lastUpdateColor, BLEND);
