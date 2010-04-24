@@ -415,7 +415,7 @@ void draw(){
       
     
     case RANDOM: 
-       newn=new Node(nr.pos.x+random(nr.mass,nr.mass+10),nr.pos.y+random(nr.mass,nr.mass+10),4, ns.size()+1); 
+       newn=new Node(nr.pos.x+random(nr.mass,nr.mass+10),nr.pos.y+random(nr.mass,nr.mass+10),4, "" + ns.size()+1, "a"); 
        ns.add(newn); 
        as.add(new Arc(newn,nr)); 
        newn.incrMass(2); 
@@ -429,7 +429,7 @@ void draw(){
     case POLYNET: 
       addNode(width, height, 40, "" + (ns.size() + 1), "P1");
       float prob=random(1); 
-               newn=new Node(random(width),random(height),10, ns.size() + 1);           
+               newn=new Node(random(width),random(height),10, "" + ns.size() + 1, "a");           
                ns.add(newn); 
                for(Iterator it2=ns.iterator();it2.hasNext();){ 
                  Node m=(Node)it2.next();           
