@@ -39,6 +39,7 @@ float curMass;
 static final int RANDOM=0; 
 static final int POLYNET=1;
 static final int FREE = 2;
+static final float anti_orbit_epsilon = 0.5;
 String peers[] = {null, null, null, null};
 color peer_colors[] = {#FF3300, #00CCCC, #9966FF, #FF00FF};
 int im;
@@ -540,16 +541,17 @@ void draw(){
         }
         Vector2D delta = u.pos.sub(quadPos);
         println("node: " + u.node_id + ": delta.norm() = " + delta.norm());
-        if (delta.norm() > 0.5) {
+        // prevent the node form orbiting around the attract point :)
+        // thanks stillo.
+        if (delta.norm() > anti_orbit_epsilon) {
           u.disp.subSelf( delta.versor().mult( fa(u.mass,curMass,delta.norm()) ) ); 
           stroke(0,0,0,20); 
           //line(u.pos.x,u.pos.y,mouseX,mouseY); 
           noStroke(); 
         } else {
-          println("shouldn't be moving");
+          
           u.disp.clear();
-          /*u.disp.x = 0.0;
-                    u.disp.y = u.pos.y;*/
+          
         }
       }
     } 
@@ -558,6 +560,8 @@ void draw(){
     if (quadrant < 0) {    
       u.costrain(0,width,0,height); 
     } else {
+      // TODO
+      // REFACTOR
       float x0 = 0.0;
       float x1 = 0.0;
       float y0 = 0.0;
@@ -631,6 +635,8 @@ void draw(){
   line(0, height/2, width, height/2);
   line(width/2, 0, width/2, height);
   
+  // TODO
+  // REFACTOR
   for (int i = 0; i < peers.length; i++) {
     if (peers[i] == null)
       break;

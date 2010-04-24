@@ -40,7 +40,7 @@
 			<key>filename</key>
 			<string>SocialGraph/SocialGraph.pde</string>
 			<key>lastUsed</key>
-			<date>2010-04-23T19:32:54Z</date>
+			<date>2010-04-23T19:51:00Z</date>
 			<key>selected</key>
 			<true/>
 		</dict>
@@ -122,30 +122,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>12</integer>
+				<integer>57</integer>
 				<key>line</key>
-				<integer>232</integer>
+				<integer>748</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>654</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>5</integer>
-				<key>line</key>
-				<integer>232</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>12</integer>
-				<key>line</key>
-				<integer>232</integer>
-			</dict>
+			<integer>730</integer>
 		</dict>
 		<key>SocialGraph/Vector2D.pde</key>
 		<dict>
