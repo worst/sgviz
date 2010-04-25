@@ -760,7 +760,7 @@ void draw(){
         String from_id = m.group(2);
         String to_id = m.group(3);
         String tag = m.group(4);
-        float weight = Float.parseFloat(m.group(5)) * 3.0;
+        float weight = Float.parseFloat(m.group(5)) * 2.5;
         
         println("peer_id = " + peer_id);
         println("from_id = " + from_id);
