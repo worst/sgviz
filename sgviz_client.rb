@@ -20,6 +20,7 @@ File.open(filename) do |log|
   r_add_edge2 = /:add_edge (\w+) (\w+) (\w+) (\d+.\d+)/
   r_update_edge2 = /:update_edge (\w+) (\w+) (\w+) (\d+.\d+)/
   
+  r_trust = /:trust (\w+)/
   r_acl_blocked = /:acl_blocked (\w+)/
   
   
@@ -121,9 +122,14 @@ File.open(filename) do |log|
       puts "*"*20
     elsif !(match = r_acl_blocked.match(line)).nil?
       puts "*"*20
-      ptus "BLOOOOOOOOOOOCKKKKEDDD!!!"
+      puts "BLOOOOOOOOOOOCKKKKEDDD!!!"
       node = match.captures[0]
       t.puts "blocked #{peer_id} #{node}"
+    elsif !(match = r_trust.match(line)).nil?
+      puts "*"*20
+      puts "Trust request"
+      node = match.captures[0]
+      t.puts "set_trusted #{peer_id} #{node}"
     end
   end
 end

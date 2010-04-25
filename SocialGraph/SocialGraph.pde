@@ -131,6 +131,7 @@ float fr(float m1, float m2, float z){
 }
 
 void setTrusted(Node n) {
+  println("setTrusted for node: " + n.node_id);
   n.on_trusted_peer = true;
   int peer = -1;
   for (int i = 0; i < peers.length; i++) {
@@ -542,7 +543,7 @@ void draw(){
             break;
         }
         Vector2D delta = u.pos.sub(quadPos);
-        println("node: " + u.node_id + ": delta.norm() = " + delta.norm());
+        //println("node: " + u.node_id + ": delta.norm() = " + delta.norm());
         // prevent the node form orbiting around the attract point :)
         // thanks stillo.
         if (delta.norm() > anti_orbit_epsilon) {
