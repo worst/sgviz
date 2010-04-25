@@ -14,6 +14,7 @@ class Node{
   color lastUpdateColor = #FFFF00;
   int updateTicksRemaining = 0;
   boolean on_trusted_peer = false;
+  int blockedUpdateTicksRemaining = 0;
   /*color highlightStart = #FFFF00;
     color lastUpdateColor = null;*/
   
@@ -67,6 +68,12 @@ class Node{
       fill(240,240,240); 
       ellipse(pos.x,pos.y,mass*1.5,mass*1.5);
       
+      if (blockedUpdateTicksRemaining > 0) {
+        fill(255, 0 ,0);
+        ellipse(pos.x, pos.y, mass * 1.5, mass *1.5);
+        blockedUpdateTicksRemaining--;
+      }
+      
       fill(mycolor);
       
       // really cheesy mechanism for highlighting things.
@@ -78,7 +85,8 @@ class Node{
         fill(c);
         
       }
-       
+      
+     
       
       ellipse(pos.x,pos.y,mass,mass);
       fill(0);

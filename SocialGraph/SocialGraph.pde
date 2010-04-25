@@ -341,6 +341,10 @@ ArrayList findEdges(Node from, Node to) {
   println("Returning found edges");
   return ret;
 }
+
+void aclBlocked(Node n) {
+  n.blockedUpdateTicksRemaining += frameRate;
+}
 void visit(Node from, Node to) {
   println("in visit()");
   ArrayList edges = findEdges(from, to);
@@ -696,12 +700,14 @@ void draw(){
       String r_updateEdge = "update_edge ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z]+) ([0-9]+.[0-9]+)";
       String r_setTrusted = "set_trusted ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+)";
       String r_visit = "visit ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+) ([a-zA-Z0-9_-]+)";
+      String r_aclBlocked = "blocked ([a-zA-Z0-9_\\.-]+) ([a-zA-Z0-9_-]+)";
       
       Pattern p_addNode = Pattern.compile(r_addNode);
       Pattern p_addEdge = Pattern.compile(r_addEdge);
       Pattern p_updateEdge = Pattern.compile(r_updateEdge);
       Pattern p_setTrusted = Pattern.compile(r_setTrusted);
       Pattern p_visit = Pattern.compile(r_visit);
+      Pattern p_aclBlocked = Pattern.compile(r_aclBlocked);
       
       // regexes in java are pretty crappy... or i'm doing something wrong
       // probably the latter?
@@ -797,6 +803,21 @@ void draw(){
           visit(from, to);
         }
         
+      } else if (Pattern.matches(r_aclBlocked, msg)) {
+        println("ACL Block: [" + msg + "]");
+        
+        Matcher m = p_aclBlocked.matcher(msg);
+        
+        m.find();
+        
+        String peer_id = m.group(1);
+        String node_id = m.group(2);
+        
+        Node n = findNode(peer_id, node_id);
+        
+        if (n != null) {
+          aclBlocked(n);
+        }
       } else {
         println("NO MATCHING COMMAND FOUND");
       }

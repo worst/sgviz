@@ -20,6 +20,8 @@ File.open(filename) do |log|
   r_add_edge2 = /:add_edge (\w+) (\w+) (\w+) (\d+.\d+)/
   r_update_edge2 = /:update_edge (\w+) (\w+) (\w+) (\d+.\d+)/
   
+  r_acl_blocked = /:acl_blocked (\w+)/
+  
   
   t = STDOUT
   if !send_to.nil?
@@ -117,6 +119,11 @@ File.open(filename) do |log|
       puts "Updating edge (non initializer)"
       t.puts "update_edge #{peer_id} #{from_node} #{to_node} #{tag} #{weight}"
       puts "*"*20
+    elsif !(match = r_acl_blocked.match(line)).nil?
+      puts "*"*20
+      ptus "BLOOOOOOOOOOOCKKKKEDDD!!!"
+      node = match.captures[0]
+      t.puts "blocked #{peer_id} #{node}"
     end
   end
 end
