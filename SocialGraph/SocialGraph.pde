@@ -23,7 +23,7 @@ boolean renderArcs=true;
 boolean mouseAttract=false; 
 boolean centerAttract = false;
 boolean quadrantAttract = true;
-boolean mouseRepulse=false; 
+boolean mouseRepulse=true; 
 boolean renderBalls=true; 
 
  
@@ -364,8 +364,9 @@ void visit(Node from, Node to) {
   });
   
   println("done sorting edges");
-  
-  flashEdge((Arc)edges.get(edges.size() - 1));
+  int size = edges.size();
+  if (size > 0)
+    flashEdge((Arc)edges.get(size - 1));
   print("done flashing edges");
 }
 void flashEdge(Arc e) {
