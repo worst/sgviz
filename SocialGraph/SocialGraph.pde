@@ -400,7 +400,8 @@ void updateEdge(Arc e, float weight) {
 
 }
  
-void draw(){ 
+void draw(){
+  textSize(14); 
   if (ns.size() > 0  && (t++%vel)==0 && curn<nn){  
     curn++; 
     int r=(int)(random(1,ns.size()-1))-1; 
@@ -454,6 +455,31 @@ void draw(){
  
   curMass=max(curMass,mouseMass); 
  
+  for (int i = 0; i < peers.length; i++) {
+    if (peers[i] == null)
+      break;
+    
+    textSize(20);
+    switch (i) {
+      case 0:
+        fill(peer_colors[i]);
+        text(peers[i], width/2 + 15, 25);
+        break;
+      case 1:
+        fill(peer_colors[i]);
+        text(peers[i], 15, 25);
+        break;
+      case 2:
+        fill(peer_colors[i]);
+        text(peers[i], 15, height/2 + 25);
+        break;
+      case 3:
+        fill(peer_colors[i]);
+        text(peers[i], width/2 + 15, height/2 + 25);
+        break;
+    }
+    textSize(14);
+  }
  
   noStroke(); 
   for(Iterator it=ns.iterator();it.hasNext();){ 
@@ -640,38 +666,14 @@ void draw(){
   
   // TODO
   // REFACTOR
-  for (int i = 0; i < peers.length; i++) {
-    if (peers[i] == null)
-      break;
-    
-    textSize(20);
-    switch (i) {
-      case 0:
-        fill(peer_colors[i]);
-        text(peers[i], width/2 + 15, 25);
-        break;
-      case 1:
-        fill(peer_colors[i]);
-        text(peers[i], 15, 25);
-        break;
-      case 2:
-        fill(peer_colors[i]);
-        text(peers[i], 15, height/2 + 25);
-        break;
-      case 3:
-        fill(peer_colors[i]);
-        text(peers[i], width/2 + 15, height/2 + 25);
-        break;
-    }
-    textSize(12);
-  }
+  
   
   // FOR DEBUGGING PURPOSES DRAW THE CENTER OF EACH QUADRANT
   fill(0, 0, 0);
-  ellipse((float)width * 3.0/4.0, (float)height * 1.0/4.0, 10, 10);
-  ellipse((float)width * 1.0/4.0, (float)height * 1.0/4.0, 10, 10);
-  ellipse((float)width * 1.0/4.0, (float)height * 3.0/4.0, 10, 10);
-  ellipse((float)width * 3.0/4.0, (float)height * 3.0/4.0, 10, 10);
+  /*ellipse((float)width * 3.0/4.0, (float)height * 1.0/4.0, 10, 10);
+    ellipse((float)width * 1.0/4.0, (float)height * 1.0/4.0, 10, 10);
+    ellipse((float)width * 1.0/4.0, (float)height * 3.0/4.0, 10, 10);
+    ellipse((float)width * 3.0/4.0, (float)height * 3.0/4.0, 10, 10);*/
   
   noFill(); 
   stroke(200,100,0,20);
