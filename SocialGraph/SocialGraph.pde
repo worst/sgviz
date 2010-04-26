@@ -344,7 +344,7 @@ ArrayList findEdges(Node from, Node to) {
 }
 
 void aclBlocked(Node n) {
-  n.blockedUpdateTicksRemaining += frameRate;
+  n.blockedUpdateTicksRemaining += frameRate*5;
 }
 void visit(Node from, Node to) {
   println("in visit()");
@@ -371,15 +371,15 @@ void visit(Node from, Node to) {
 }
 void flashEdge(Arc e) {
   e.lastUpdateColor = e.highlightStart;
-  e.updateTicksRemaining += frameRate*2;
+  e.updateTicksRemaining += frameRate*10;
   
   e.v.lastUpdateColor = e.v.highlightStart;
-  e.v.updateTicksRemaining += frameRate;
+  e.v.updateTicksRemaining += frameRate*5;
   
   
   // this is a terrible way to ensure that things will sorta synch up.
   // would be a lot easier if i didn't try to fade.
-  e.updateUQueue.add(new Integer(int(frameRate)));
+  e.updateUQueue.add(new Integer(int(frameRate*5)));
   
 }
 void updateEdge(Arc e, float weight) {
