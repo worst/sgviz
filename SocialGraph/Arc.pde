@@ -39,9 +39,12 @@ class Arc{
     
     // really lame flashing animation.
     if (updateTicksRemaining > 0) {
-      lastUpdateColor = blendColor(c, lastUpdateColor, BLEND);
+      if (updateTicksRemaining <= frameRate/2.0) {
+        lastUpdateColor = blendColor(c, lastUpdateColor, BLEND);
+      }
       c = lastUpdateColor;
       updateTicksRemaining--;
+      
       
       // HACK
       // This is a terrible way to handle the animation.
@@ -52,7 +55,7 @@ class Arc{
          updateUQueue.add(0, new Integer(ticksLeftBeforeUpdate));
        } else {
          u.lastUpdateColor = u.highlightStart;
-         u.updateTicksRemaining += frameRate;
+         u.updateTicksRemaining += frameRate*2.5;
        }
       }
     }

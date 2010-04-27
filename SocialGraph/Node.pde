@@ -79,7 +79,9 @@ class Node{
       // really cheesy mechanism for highlighting things.
       if (updateTicksRemaining > 0) {
         //println("node needs vis update");
-        lastUpdateColor = blendColor(mycolor, lastUpdateColor, BLEND);
+        if (updateTicksRemaining <= frameRate/2.0) {
+          lastUpdateColor = blendColor(mycolor, lastUpdateColor, BLEND);
+        }
         color c = lastUpdateColor;
         updateTicksRemaining--;
         fill(c);

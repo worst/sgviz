@@ -371,15 +371,15 @@ void visit(Node from, Node to) {
 }
 void flashEdge(Arc e) {
   e.lastUpdateColor = e.highlightStart;
-  e.updateTicksRemaining += frameRate*10;
+  e.updateTicksRemaining += frameRate*5;
   
   e.v.lastUpdateColor = e.v.highlightStart;
-  e.v.updateTicksRemaining += frameRate*5;
+  e.v.updateTicksRemaining += frameRate*2.5;
   
   
   // this is a terrible way to ensure that things will sorta synch up.
   // would be a lot easier if i didn't try to fade.
-  e.updateUQueue.add(new Integer(int(frameRate*5)));
+  e.updateUQueue.add(new Integer(int(frameRate*2.5)));
   
 }
 void updateEdge(Arc e, float weight) {
