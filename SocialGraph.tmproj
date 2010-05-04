@@ -2,9 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>currentDocument</key>
+	<string>SocialGraph/SocialGraph.pde</string>
 	<key>documents</key>
 	<array>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>SocialGraph</string>
 			<key>regexFolderFilter</key>
@@ -19,6 +23,8 @@
 		<dict>
 			<key>filename</key>
 			<string>sgviz_client.rb</string>
+			<key>lastUsed</key>
+			<date>2010-04-26T01:19:09Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -42,28 +48,42 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>56</integer>
+				<integer>8</integer>
 				<key>line</key>
-				<integer>46</integer>
+				<integer>42</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>15</integer>
+			<integer>30</integer>
 		</dict>
 		<key>SocialGraph/Node.pde</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>7</integer>
+				<integer>10</integer>
 				<key>line</key>
-				<integer>80</integer>
+				<integer>82</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>60</integer>
+			<integer>58</integer>
+		</dict>
+		<key>SocialGraph/SocialGraph.pde</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>50</integer>
+				<key>line</key>
+				<integer>381</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>353</integer>
 		</dict>
 		<key>SocialGraph/Vector2D.pde</key>
 		<dict>
@@ -125,7 +145,28 @@
 				<integer>29</integer>
 			</dict>
 		</dict>
+		<key>sgviz_client.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>2</integer>
+				<key>line</key>
+				<integer>39</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>26</integer>
+		</dict>
 	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>SocialGraph/SocialGraph.pde</string>
+		<string>SocialGraph/Arc.pde</string>
+		<string>SocialGraph/Node.pde</string>
+		<string>sgviz_client.rb</string>
+	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
