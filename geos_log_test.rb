@@ -3,6 +3,8 @@
 require 'socket'
 
 peer_id = ARGV[0]
+
+### this is a change
 log_file = ARGV[1]
 
 # initialize (add a node as trusting this peer)
